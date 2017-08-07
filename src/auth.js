@@ -35,4 +35,18 @@ module.exports = {
         return !!localStorage.token
     },
 
+    getUser() {
+        return api.getUser()
+            .then(res => {
+                localStorage.id = res.body.id;
+                localStorage.email = res.body.email;
+                localStorage.avatarurl = res.body.avatarUrl;
+                //console.log(res.body);
+                return localStorage;
+            });
+    },
+
+    // getAvatar() {
+    //     return localStorage.avatarurl;
+    // }
 }

@@ -17,7 +17,7 @@ export default class SignUp extends Component {
     _handleSubmit(e) {
         e.preventDefault();
 
-        console.log("UserName " + this.refs.email.value, "Password " + this.refs.password.value);
+        //console.log("UserName " + this.refs.email.value, "Password " + this.refs.password.value);
         // fetch(`https://private-aa273-dashboardlyfrontend1.apiary-mock.com/auth/users`, {
 
         let {email: {value: email}, password: {value: password}} = this.refs;

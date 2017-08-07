@@ -10,6 +10,11 @@ class Menu extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            id: 0,
+            email: '',
+            avatarUrl: ''
+        }
         this._handleLogout = this._handleLogout.bind(this);
     }
 
@@ -25,6 +30,36 @@ class Menu extends Component {
         history.push('/');
     }
 
+    fetchUser() {
+        auth.getUser()
+            .then(res => {
+                this.updateUser(res);
+            })
+    }
+
+    updateUser(user) {
+        if (this.state.id !== user.id) {
+            this.setState({
+                id: user.id,
+                email: user.email,
+                avatarUrl: user.avatarurl
+            })
+        }
+    }
+
+    componentDidUpdate() {
+        const isLoggedIn = auth.isLoggedIn()
+        if (isLoggedIn && this.state.id === 0) {
+            this.fetchUser();
+        } else if (!isLoggedIn) {
+            this.updateUser({
+                id: 0,
+                email: '',
+                avatarUrl: ''
+            })
+        }
+    }
+
     render() {
         let {closeMenu, show} = this.props
         const isLoggedIn = auth.isLoggedIn()
@@ -32,7 +67,7 @@ class Menu extends Component {
             <div className={`menu ${show ? "show" : ""}`}>
 
                 <div className="menu__header">
-                    <img src="" alt="profile-pic" className="menu__avatar"/>
+                    <img src={this.state.avatarUrl} alt="profile-pic" className="menu__avatar"/>
                 </div>
 
                 <div className="menu__list">
