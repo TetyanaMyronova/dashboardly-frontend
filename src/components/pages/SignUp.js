@@ -7,7 +7,9 @@ import './SignUp.css';
 export default class SignUp extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            error: ''
+        };
 
         this._handleSubmit = this._handleSubmit.bind(this);
     }
@@ -22,7 +24,7 @@ export default class SignUp extends Component {
         if (email && password) {
             auth.signup(email, password)
                 .then(res => this.props.router.push('/login'))
-                .catch(console.error)
+                .catch(err => this.setState(console.error))
         }
         else {
             this.setState({error: "Please enter an email and password"})
@@ -31,11 +33,14 @@ export default class SignUp extends Component {
 
     render() {
         return (
-            <form onSubmit={this._handleSubmit}>
-                <input ref="email" type="text"></input>
-                <input ref="password" type="password"></input>
-                <button>SignUp</button>
-            </form>
+            <div>
+                <form onSubmit={this._handleSubmit}>
+                    <input ref="email" type="text"></input>
+                    <input ref="password" type="password"></input>
+                    <button>SignUp</button>
+                </form>
+                <h2 className="error">{this.state.error}</h2>
+            </div>
         );
     }
 }

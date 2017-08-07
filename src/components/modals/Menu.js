@@ -54,7 +54,7 @@ class Menu extends Component {
                         : null}
 
                     {isLoggedIn ?
-                        <button onClick={this._handleLogout}>logout</button>
+                        <button className="logoutbutton" onClick={this._handleLogout}>Logout</button>
                         : null}
                 </div>
 
