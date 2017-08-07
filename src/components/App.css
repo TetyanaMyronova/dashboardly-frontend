@@ -43,3 +43,7 @@ a {
 .settings-icon:hover, .menu-icon:hover, .App-navbar__title:hover {
   color: DarkOliveGreen;
 }
+
+.error {
+  color: red;
+}
