@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import './BoardCard.css';
+import auth from '../../auth';
 // import EditBoard from '../modals/EditBoard';
 
 export default class BoardCard extends Component {
@@ -16,7 +17,7 @@ export default class BoardCard extends Component {
     }
 
     render() {
-        let {title, description, id} = this.props
+        let {title, description, id} = this.props;
         return (
             <div className="board-card">
                 <Link to={`/boards/${id}`}>
@@ -26,7 +27,7 @@ export default class BoardCard extends Component {
                         <hr/>
                     </div>
                 </Link>
-                <button type="click" onClick={this.editBoard}>Edit</button>
+                {auth.isLoggedIn() ? (+this.props.ownerId === +localStorage.id? <button type="click" onClick={this.editBoard}>Edit</button> : null) : null}
             </div>
         );
     }

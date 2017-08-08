@@ -29,9 +29,10 @@ export default class Home extends Component {
     _fetchBoards = () => {
         api.getBoardsList()
             .then(res => {
-                this.setState({boards: res.body.boards})
+                //console.log(`boards=${JSON.stringify(res.body.boards)}`);
+                this.setState({boards: res.body.boards});
             })
-            .catch(console.error)
+            .catch(console.error);
     }
 
     newBoard = (newBoardInfo) => {
@@ -102,12 +103,14 @@ export default class Home extends Component {
 
     render() {
         let {boards} = this.state;
+        //console.log(`Rendering=${JSON.stringify(this.state.boards)}`);
         return (
             <div className="home">
                 { boards.map(b =>
                     <BoardCard
                         key={b.id}
                         id={b.id}
+                        ownerId={b.ownerId}
                         title={b.title}
                         description={b.description}
                         updatedAt={b.updatedAt}
