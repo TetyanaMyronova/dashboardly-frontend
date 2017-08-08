@@ -63,11 +63,13 @@ class Menu extends Component {
     render() {
         let {closeMenu, show} = this.props
         const isLoggedIn = auth.isLoggedIn()
+        console.log(this.state.email);
         return (
             <div className={`menu ${show ? "show" : ""}`}>
 
                 <div className="menu__header">
                     <img src={this.state.avatarUrl} alt="profile-pic" className="menu__avatar"/>
+                    {isLoggedIn ? <p className="menu__user">{this.state.email}</p>: null}
                 </div>
 
                 <div className="menu__list">
@@ -89,7 +91,7 @@ class Menu extends Component {
                         : null}
 
                     {isLoggedIn ?
-                        <button className="logoutbutton" onClick={this._handleLogout}>Logout</button>
+                        <button className="menu__item logoutbutton" onClick={this._handleLogout}>Logout</button>
                         : null}
                 </div>
 

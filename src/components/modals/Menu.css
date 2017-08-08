@@ -1,11 +1,11 @@
 .logoutbutton {
-  background:none!important;
+  background:none;
   color:inherit;
   border:none;
-  padding:0!important;
+  padding:0;
   font: inherit;
   /*border is optional*/
-  border-bottom:1px solid #444;
+  /*border-bottom:1px solid #444;*/
   cursor: pointer;
   text-align: left;
 }
@@ -16,7 +16,7 @@
   top: 0;
   left: 0;
   z-index: 10;
-  background: lightgrey;
+  background: white;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
@@ -34,18 +34,38 @@
 
 .menu__header {
   height: 160px;
+  background: darkgrey;
+}
+
+.menu__user {
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+  padding-left: .5rem;
 }
 
 .menu__avatar {
-  height: 60px;
-  width: 60px;
+  min-height: 60px;
+  min-width: 60px;
   border-radius: 50%;
   background: green;
+  line-height: 60px;
   margin: 1rem;
+  text-align: center;
 }
 
 .menu__list {
   display: flex;
+  color: black;
   flex-flow: column;
+  font-weight: bold;
 }
 
+.menu__item {
+  padding: .5rem;
+}
+
+.menu__item:hover {
+  color: blue;
+}
