@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import api from '../../api';
 import BookmarkCard from '../elements/BookmarkCard';
-// import auth from '../../auth';
+import auth from '../../auth';
+import AddButton from '../elements/AddButton';
 import './Board.css';
 
 export default class Board extends Component {
@@ -34,6 +35,14 @@ export default class Board extends Component {
       .catch(console.error)
   }
 
+  newBookmark = (newBookmarkInfo) => {
+      let newBookmarkList = this.state.bookmarks;
+      newBookmarkList.push(newBookmarkInfo);
+      this.setState({
+          bookmarks: newBookmarkList
+      })
+  }
+
   render() {
     let { bookmarks } = this.state
     return (
@@ -47,6 +56,7 @@ export default class Board extends Component {
             url={b.url}
           />
         )}
+          {auth.isLoggedIn() ? <AddButton typeOfElement="Bookmark" callbackFromParent={this.newBookmark}/> : null}
       </div>
     );
   }

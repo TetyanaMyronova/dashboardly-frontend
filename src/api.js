@@ -47,6 +47,12 @@ class Api {
             .send({title, description})
     )
 
+    createBookmark = (boardId, title, url, description) => (
+        superagent
+            .post(`${API_HOST}/boards/${boardId}/bookmarks`)
+            .send({boardId, title, url, description})
+    )
+
 }
 
 export default new Api();

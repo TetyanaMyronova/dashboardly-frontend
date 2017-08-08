@@ -4,6 +4,7 @@ import BoardCard from '../elements/BoardCard';
 import AddButton from '../elements/AddButton';
 import auth from '../../auth';
 import './Home.css';
+import {browserHistory as history} from 'react-router';
 
 
 export default class Home extends Component {
@@ -32,8 +33,11 @@ export default class Home extends Component {
         this.setState({
             boards: newBoardList
         })
+        //this.goToNewBoard(newBoardInfo.id); need to be revised later # complete task 4
+    }
 
-        console.log('Home new board infro' + JSON.stringify(newBoardInfo));
+    goToNewBoard = (boardId) => {
+        history.push(`/boards/${boardId}`);
     }
 
     render() {
@@ -49,7 +53,7 @@ export default class Home extends Component {
                         updatedAt={b.updatedAt}
                     />
                 )}
-                {auth.isLoggedIn() ? <AddButton callbackFromParent={this.newBoard}/> : null}
+                {auth.isLoggedIn() ? <AddButton typeOfElement="Board" callbackFromParent={this.newBoard}/> : null}
             </div>
         );
     }

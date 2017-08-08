@@ -1,16 +1,62 @@
 import React, {Component} from 'react';
-import './CreateBoookmark.css';
+import './CreateBookmark.css';
+import  api from '../../api.js';
+import {browserHistory as history, Router} from 'react-router';
 
-export default class CreateBoookmark extends Component {
+export default class CreateBookmark extends Component {
   constructor(props) {
-    super(props);
-    this.state = {};
+      super(props);
+      this.defaultProps = {
+          callbackFromParent: '',
+          boardId: 10
+      }
+      this.state = {
+          error: '',
+      };
   }
 
-  render() {
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.location !== this.props.location) {
+            // navigated!
+            console.log('Check props' +this.props.location);
+        }
+    }
+
+    _handleCreateBookmark = (e) => {
+        e.preventDefault();
+        if (this.refs.title.value.length > 0 && this.refs.description.value.length > 0 && this.refs.url.value.length > 0) {
+            api.createBookmark(10, this.refs.title.value, this.refs.url.value, this.refs.description.value)
+                .then(res => {
+                    this.props.callbackFromParent(res.body)
+                    if (this.state.error !== '') {
+                        this.setState({error: ''})
+                    }
+                })
+                .catch(err => this.setState(console.error))
+        } else {
+            this.setState({error: "Please enter a title and description"})
+        }
+    }
+
+
+    render() {
     return (
       <div>
-        <h1>Title</h1>
+        <h1>Create New Bookmark</h1>
+        <form onSubmit={this._handleCreateBookmark}>
+          <p>Title: </p>
+          <input ref="title" placeholder="Bookmark title"/>
+          <hr/>
+          <p>Bookmark URL: </p>
+          <input ref="url" placeholder="Bookmark url"/>
+          <hr/>
+          <h2 className="error">{this.state.error}</h2>
+          <p>Description: </p>
+          <textarea ref="description" placeholder="Description of the bookmark"/>
+          <hr/>
+          <button type="submit">Create Bookmark</button>
+          <hr/>
+        </form>
       </div>
     );
   }
