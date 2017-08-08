@@ -46,6 +46,10 @@ module.exports = {
             });
     },
 
+    getUserId() {
+        return localStorage.id;
+
+    }
     // getAvatar() {
     //     return localStorage.avatarurl;
     // }
