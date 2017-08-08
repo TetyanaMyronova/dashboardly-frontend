@@ -53,6 +53,12 @@ class Api {
             .send({boardId, title, url, description})
     )
 
+    updateBoard = (id, title, description) => (
+        superagent
+            .patch(`${API_HOST}/boards/${id}`)
+            .send({id, title, description})
+    )
+
 }
 
 export default new Api();

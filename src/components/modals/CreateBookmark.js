@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './CreateBookmark.css';
 import  api from '../../api.js';
-import {browserHistory as history, Router} from 'react-router';
+// import {browserHistory as history, Router} from 'react-router';
 
 export default class CreateBookmark extends Component {
     constructor(props) {
