@@ -16,7 +16,7 @@ A board represents a dashboard composed of bookmarks.
 
 + Response 200 (application/json)
     + Attributes
-        - boards (array[BoardWithId])
+        - boards (array[BoardWithId,BoardWithId4])
 
 
 
@@ -211,9 +211,13 @@ Requesting this endpoint with an Authorization token will return the user that t
 - title: `We have updated the board` (string) - The name of the board
 - description: `TestBoard creation3`
 
+## Board4 (object)
+- title: `New board on the basic list` (string) - The name of the board
+- description: `Home Page Load`
+
 ## BoardWithId (object)
 - id: `124` (number) - The unique ID of the board
-- ownerId: `6` (number, required) - The unique ID of the user who owns the board
+- ownerId: `123` (number, required) - The unique ID of the user who owns the board
 - Include Board
 - Include Timestamps
 
@@ -223,10 +227,16 @@ Requesting this endpoint with an Authorization token will return the user that t
 - Include Board2
 - Include Timestamps
 
-## BoardWithId3 (object)
+## BoardWithId3 (object)B
 - id: `124` (number) - The unique ID of the board
 - ownerId: `7` (number, required) - The unique ID of the user who owns the board
 - Include Board3
+- Include Timestamps
+
+## BoardWithId4 (object)
+- id: `125` (number) - The unique ID of the board
+- ownerId: `7` (number, required) - The unique ID of the user who owns the board
+- Include Board4
 - Include Timestamps
 
 
