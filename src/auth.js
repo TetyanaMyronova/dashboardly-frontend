@@ -46,10 +46,10 @@ module.exports = {
             });
     },
 
-    getUserId() {
-        return localStorage.id;
-
-    }
+    // getUserId() {
+    //     return localStorage.id;
+    //
+    // }
     // getAvatar() {
     //     return localStorage.avatarurl;
     // }

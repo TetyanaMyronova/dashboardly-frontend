@@ -41,10 +41,10 @@ class Api {
             .get(`${API_HOST}/auth/me`)
     )
 
-    createBoard = (ownerId, title, description) => (
+    createBoard = (title, description) => (
         superagent
             .post(`${API_HOST}/boards`)
-            .send({ownerId, title, description})
+            .send({title, description})
     )
 
 }

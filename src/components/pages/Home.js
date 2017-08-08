@@ -26,6 +26,16 @@ export default class Home extends Component {
             .catch(console.error)
     }
 
+    newBoard = (newBoardInfo) => {
+        let newBoardList = this.state.boards;
+        newBoardList.push(newBoardInfo);
+        this.setState({
+            boards: newBoardList
+        })
+
+        console.log('Home new board infro' + JSON.stringify(newBoardInfo));
+    }
+
     render() {
         let {boards} = this.state;
         return (
@@ -39,7 +49,7 @@ export default class Home extends Component {
                         updatedAt={b.updatedAt}
                     />
                 )}
-                {auth.isLoggedIn() ? <AddButton /> : null}
+                {auth.isLoggedIn() ? <AddButton callbackFromParent={this.newBoard}/> : null}
             </div>
         );
     }
