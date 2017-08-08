@@ -56,7 +56,7 @@ export default class Board extends Component {
             url={b.url}
           />
         )}
-          {auth.isLoggedIn() ? <AddButton typeOfElement="Bookmark" callbackFromParent={this.newBookmark}/> : null}
+          {auth.isLoggedIn() ? <AddButton boardId={this.props.params.id} typeOfElement="Bookmark" callbackFromParent={this.newBookmark}/> : null}
       </div>
     );
   }

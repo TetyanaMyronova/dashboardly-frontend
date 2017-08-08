@@ -7,7 +7,8 @@ export default class AddButton extends React.Component {
         super(props);
         this.defaultProps = {
             callbackFromParent: '',
-            typeOfElement: ''
+            typeOfElement: '',
+            boardId: 0
 
         }
         this.state = {
@@ -43,7 +44,7 @@ export default class AddButton extends React.Component {
         if (this.props.typeOfElement === 'Board') {
             return <CreateBoard show={this.state.isCreateElementOpen} closeCreateElement={this.closeCreateElement} callbackFromParent={this.newBoard}></CreateBoard>
         } else if (this.props.typeOfElement === 'Bookmark'){
-            return <CreateBookmark show={this.state.isCreateElementOpen} closeCreateElement={this.closeCreateElement} callbackFromParent={this.newBookmark}/>
+            return <CreateBookmark boardId={this.props.boardId} show={this.state.isCreateElementOpen} closeCreateElement={this.closeCreateElement} callbackFromParent={this.newBookmark}/>
         } else {
             return <div> Empty</div>
         }
