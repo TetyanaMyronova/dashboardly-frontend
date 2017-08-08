@@ -85,7 +85,7 @@ Updating one's boards requires passing a session token. This endpoint only requi
     + Attributes (Board)
 
 + Response 200 (application/json)
-    + Attributes (BoardWithId)
+    + Attributes (BoardWithId3)
 
 
 
@@ -207,6 +207,10 @@ Requesting this endpoint with an Authorization token will return the user that t
 - title: `Board for grandpa` (string) - The name of the board
 - description: `TestBoard creation2`
 
+## Board3 (object)
+- title: `We have updated the board` (string) - The name of the board
+- description: `TestBoard creation3`
+
 ## BoardWithId (object)
 - id: `124` (number) - The unique ID of the board
 - ownerId: `6` (number, required) - The unique ID of the user who owns the board
@@ -217,6 +221,12 @@ Requesting this endpoint with an Authorization token will return the user that t
 - id: `123` (number) - The unique ID of the board
 - ownerId: `7` (number, required) - The unique ID of the user who owns the board
 - Include Board2
+- Include Timestamps
+
+## BoardWithId3 (object)
+- id: `123` (number) - The unique ID of the board
+- ownerId: `7` (number, required) - The unique ID of the user who owns the board
+- Include Board3
 - Include Timestamps
 
 
