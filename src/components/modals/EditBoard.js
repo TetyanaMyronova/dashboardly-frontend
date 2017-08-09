@@ -65,7 +65,7 @@ export default class EditBoard extends Component {
         let {show} = this.props;
         return (
             <div className={`editBoard ${show ? "show" : ""}`}>
-                <h1>Edit New Board</h1>
+                <h1>Edit Board</h1>
                 <form onSubmit={this._handleEditBoard}>
                     <p>Title: </p>
                     <input ref="title" onInput={this.handleTitleInput} value={this.state.titleValue}/>

@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import './BoardCard.css';
 import auth from '../../auth';
-// import EditBoard from '../modals/EditBoard';
+//import EditBoard from '../modals/EditBoard';
 
 export default class BoardCard extends Component {
     constructor(props) {
         super(props);
+        this.defaultProps = {
+            ownerId: 0
+        }
         this.state = {};
     }
 

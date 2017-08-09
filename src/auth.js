@@ -41,7 +41,6 @@ module.exports = {
                 localStorage.id = res.body.id;
                 localStorage.email = res.body.email;
                 localStorage.avatarurl = res.body.avatarUrl;
-                //console.log(res.body);
                 return localStorage;
             });
     },

@@ -103,7 +103,7 @@ export default class Home extends Component {
 
     render() {
         let {boards} = this.state;
-        //console.log(`Rendering=${JSON.stringify(this.state.boards)}`);
+        console.log(`Rendering=${JSON.stringify(this.state.boards)}`);
         return (
             <div className="home">
                 { boards.map(b =>

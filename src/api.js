@@ -59,6 +59,19 @@ class Api {
             .send({id, title, description})
     )
 
+    updateBookmark = (id, title, description, url) => (
+        superagent
+            .patch(`${API_HOST}/bookmarks/${id}`)
+            .send({id, title, description, url})
+    )
+
+    validateBoardOwner = (boardId) => (
+        superagent
+            .post(`${API_HOST}/auth/boardowner`)
+            .send({boardId})
+    )
+
+
 }
 
 export default new Api();

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router';
 import './BookmarkCard.css';
 import auth from '../../auth';
 
@@ -20,7 +19,7 @@ export default class BookmarkCard extends Component {
 
     render() {
         let {title, description, url} = this.props;
-        console.log('This is Bookmark Card' + JSON.stringify(this.props));
+        //console.log('This is Bookmark Card' + JSON.stringify(this.props));
         return (
             <div className="bookmark-card">
                 <a href={url}>
@@ -30,8 +29,8 @@ export default class BookmarkCard extends Component {
                     </div>
                     <img src={url} alt={title}/>
                 </a>
-                {auth.isLoggedIn() ? (+this.props.ownerId === +localStorage.id ?
-                        <button type="click" onClick={this.editBookmark}>Edit</button> : null) : null}
+                <hr/>
+                {auth.isLoggedIn() ? (+this.props.ownerId === +localStorage.id? <button type="click" onClick={this.editBookmark}>Edit</button> : null) : null}
             </div>
 
         );

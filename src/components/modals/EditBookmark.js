@@ -1,34 +1,39 @@
 import React, {Component} from 'react';
-import './EditBoard.css';
+import './EditBookmark.css';
 // import  api from '../../api.js'
+// import BookmarkCard from '../elements/BookmarkCard';
 
-export default class EditBoard extends Component {
+export default class EditBookmark extends Component {
     constructor(props) {
         super(props);
         this.defaultProps = {
-            callbackEditBoard: '',
+            callbackEditBookmark: '',
             show: false,
-            boardInfo: {
+            bookmarkInfo: {
                 id: 0,
                 title: '',
-                description: ''
+                description: '',
+                url: ''
             }
 
         }
         this.state = {
             error: '',
-            id: this.props.boardInfo.id,
-            titleValue: this.props.boardInfo.title,
-            descriptionValue: this.props.boardInfo.description
+            id: this.props.bookmarkInfo.id,
+            titleValue: this.props.bookmarkInfo.title,
+            descriptionValue: this.props.bookmarkInfo.description,
+            urlValue:  this.props.bookmarkInfo.url
         };
     }
 
-    _handleEditBoard = (e) => {
+    _handleEditBookmark = (e) => {
         e.preventDefault();
-        this.props.callbackEditBoard({
+        console.log(JSON.stringify(this.defaultProps));
+        this.props.callbackEditBookmark({
             id: this.state.id,
             title: this.state.titleValue,
-            description: this.state.descriptionValue
+            description: this.state.descriptionValue,
+            url: this.state.urlValue
         });
 
     }
@@ -49,14 +54,23 @@ export default class EditBoard extends Component {
         }
     }
 
+    handleUrlInput = (event) => {
+        if (event.target.value !== this.state.urlValue) {
+            this.setState({
+                urlValue: event.target.value
+            })
+        }
+    }
+
     componentDidUpdate(prevProps, prevState){
         //console.log(`EditBoardUpdated curProps ${JSON.stringify(this.props)}`);
         //console.log(`prevProps=${JSON.stringify(prevProps)}`);
-        if (prevProps.boardInfo.id !== this.props.boardInfo.id) {
+        if (prevProps.bookmarkInfo.id !== this.props.bookmarkInfo.id) {
             this.setState({
-                id: this.props.boardInfo.id,
-                titleValue: this.props.boardInfo.title,
-                descriptionValue: this.props.boardInfo.description
+                id: this.props.bookmarkInfo.id,
+                titleValue: this.props.bookmarkInfo.title,
+                descriptionValue: this.props.bookmarkInfo.description,
+                urlValue: this.props.bookmarkInfo.url
             })
         }
     }
@@ -64,9 +78,9 @@ export default class EditBoard extends Component {
     render() {
         let {show} = this.props;
         return (
-            <div className={`editBoard ${show ? "show" : ""}`}>
-                <h1>Edit New Board</h1>
-                <form onSubmit={this._handleEditBoard}>
+            <div className={`editBookmark ${show ? "show" : ""}`}>
+                <h1>Edit Bookmark</h1>
+                <form onSubmit={this._handleEditBookmark}>
                     <p>Title: </p>
                     <input ref="title" onInput={this.handleTitleInput} value={this.state.titleValue}/>
                     <hr/>
@@ -74,7 +88,10 @@ export default class EditBoard extends Component {
                     <p>Description: </p>
                     <textarea ref="description" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
                     <hr/>
-                    <button type="submit">Edit Board</button>
+                    <p>Url: </p>
+                    <textarea ref="url" onInput={this.handleUrlInput} value={this.state.urlValue}/>
+                    <hr/>
+                    <button type="submit">Edit Bookmark</button>
                     <hr/>
                 </form>
             </div>

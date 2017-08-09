@@ -1,8 +1,8 @@
-.editBoard{
+.editBookmark{
     visibility: hidden;
 }
 
-.editBoard.show {
+.editBookmark.show {
     position: absolute;
     transform: translateX(0px);
     opacity: 1;
