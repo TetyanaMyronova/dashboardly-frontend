@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
+import onClickOutside from 'react-onclickoutside';
+
 import './CreateBoard.css';
 import  api from '../../api.js'
 
-export default class CreateBoard extends Component {
+class CreateBoard extends Component {
     constructor(props) {
         super(props);
         this.defaultProps = {
@@ -11,6 +13,10 @@ export default class CreateBoard extends Component {
         this.state = {
             error: '',
         };
+    }
+    
+    handleClickOutside = () => {
+        this.props.closeCreateElement();
     }
 
     _handleCreateBoard = (e) => {
@@ -34,19 +40,21 @@ export default class CreateBoard extends Component {
         return (
             <div className={`createBoard ${show ? "show" : ""}`}>
                 <h1>Create New Board</h1>
-                <form onSubmit={this._handleCreateBoard}>
+                <form className="createBoardForm" onSubmit={this._handleCreateBoard}>
                     <p>Title: </p>
                     <input ref="title" placeholder="Board title"/>
                     <hr/>
                     <h2 className="error">{this.state.error}</h2>
                     <p>Description: </p>
                     <textarea ref="description" placeholder="Description of the board"/>
-                    <hr/>
-                    <button type="submit">Create Board</button>
-                    <hr/>
+                    <div className="createBoardButton">
+                        <button type="submit">Create Board</button>
+                    </div>
                 </form>
             </div>
         )
     }
 
 }
+
+export default onClickOutside(CreateBoard);

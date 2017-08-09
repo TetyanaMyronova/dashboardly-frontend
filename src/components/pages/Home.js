@@ -106,19 +106,23 @@ export default class Home extends Component {
         console.log(`Rendering=${JSON.stringify(this.state.boards)}`);
         return (
             <div className="home">
-                { boards.map(b =>
-                    <BoardCard
-                        key={b.id}
-                        id={b.id}
-                        ownerId={b.ownerId}
-                        title={b.title}
-                        description={b.description}
-                        updatedAt={b.updatedAt}
-                        callbackEditBoard={this.summonEditBoard}
-                    />
-                )}
-                {auth.isLoggedIn() ? <AddButton typeOfElement="Board" callbackFromParent={this.newBoard}/> : null}
-                <EditBoard show={this.state.isEditBoardOpen} boardInfo={this.state.editBoardInfo} callbackEditBoard={this.editBoard}/>
+                <div className="boardCards">
+                    { boards.map(b =>
+                        <BoardCard
+                            key={b.id}
+                            id={b.id}
+                            ownerId={b.ownerId}
+                            title={b.title}
+                            description={b.description}
+                            updatedAt={b.updatedAt}
+                            callbackEditBoard={this.summonEditBoard}
+                        />
+                    )}
+                    {auth.isLoggedIn() ? <AddButton typeOfElement="Board" callbackFromParent={this.newBoard}/> : null}
+                </div>
+                <div className="editBoard">
+                    <EditBoard show={this.state.isEditBoardOpen} boardInfo={this.state.editBoardInfo} callbackEditBoard={this.editBoard}/>
+                </div>
             </div>
         );
     }
