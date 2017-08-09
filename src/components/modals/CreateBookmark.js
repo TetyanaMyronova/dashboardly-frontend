@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import onClickOutside from 'react-onclickoutside';
+
 import './CreateBookmark.css';
 import  api from '../../api.js';
-// import {browserHistory as history, Router} from 'react-router';
+
 var limitOfDescriptionValue = 80;
 
-export default class CreateBookmark extends Component {
+class CreateBookmark extends Component {
     constructor(props) {
         super(props);
         this.defaultProps = {
@@ -18,6 +20,10 @@ export default class CreateBookmark extends Component {
         };
     }
 
+    handleClickOutside = () => {
+        this.props.closeCreateElement();
+    }
+    
     handleDescriptionInput = (event) => {
         if ((event.target.value !== this.state.descriptionValue) && (event.target.value.length <= limitOfDescriptionValue)) {
             this.setState({
@@ -56,7 +62,7 @@ export default class CreateBookmark extends Component {
         return (
             <div className={`createBookmark ${show ? "show" : ""}`}>
                 <h1>Create New Bookmark</h1>
-                <form onSubmit={this._handleCreateBookmark}>
+                <form className="createBookmarkForm" onSubmit={this._handleCreateBookmark}>
                     <p>Title: </p>
                     <input ref="title" placeholder="Bookmark title"/>
                     <hr/>
@@ -67,12 +73,15 @@ export default class CreateBookmark extends Component {
                     <p>Description: </p>
                     <textarea ref="description" placeholder="Description of the board" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
                     <p style = {{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
-                    <hr/>
-                    <button type="submit">Create Bookmark</button>
-                    <hr/>
+                    <div className="createBookmarkButton">
+                        <button type="submit">Create Bookmark</button>
+                    </div>
                 </form>
             </div>
         );
     }
 
 }
+
+
+export default onClickOutside(CreateBookmark);

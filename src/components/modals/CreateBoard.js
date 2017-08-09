@@ -63,7 +63,9 @@ class CreateBoard extends Component {
                     <p style={{
                         color: 'darkblue',
                         textAlign: 'right'
-                    }}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
+                    }}>
+                        {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}
+                    </p>
                     <div className="createBoardButton">
                         <button type="submit">Create Board</button>
                     </div>
