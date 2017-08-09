@@ -66,7 +66,7 @@ export default class CreateBookmark extends Component {
                     <h2 className="error">{this.state.error}</h2>
                     <p>Description: </p>
                     <textarea ref="description" placeholder="Description of the board" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
-                    <p style = {{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
+                    <p style={{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
                     <hr/>
                     <button type="submit">Create Bookmark</button>
                     <hr/>
