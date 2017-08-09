@@ -112,19 +112,23 @@ export default class Board extends Component {
       //console.log(`Rendering=${JSON.stringify(this.state.bookmarks)}`);
     return (
       <div className="board">
-        { bookmarks.map(b =>
-          <BookmarkCard
-            key={b.id}
-            id={b.id}
-            ownerId={this.state.ownerId}
-            title={b.title}
-            description={b.description}
-            url={b.url}
-            callbackEditBookmark={this.summonEditBookmark}
-          />
-        )}
-          {auth.isLoggedIn() ? <AddButton typeOfElement="Bookmark" callbackFromParent={this.newBookmark}/> : null}
-          <EditBookmark show={this.state.isEditBookmarkOpen} bookmarkInfo={this.state.editBookmarkInfo} callbackEditBookmark={this.editBookmark}/>
+        <div className="bookmarkCards">
+            { bookmarks.map(b =>
+              <BookmarkCard
+                key={b.id}
+                id={b.id}
+                ownerId={this.state.ownerId}
+                title={b.title}
+                description={b.description}
+                url={b.url}
+                callbackEditBookmark={this.summonEditBookmark}
+              />
+            )}
+              {auth.isLoggedIn() ? <AddButton typeOfElement="Bookmark" callbackFromParent={this.newBookmark}/> : null}
+        </div>
+        <div className="editBookmark">
+            <EditBookmark show={this.state.isEditBookmarkOpen} bookmarkInfo={this.state.editBookmarkInfo} callbackEditBookmark={this.editBookmark}/>
+        </div>
       </div>
     );
   }

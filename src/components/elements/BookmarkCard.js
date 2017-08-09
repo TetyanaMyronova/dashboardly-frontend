@@ -29,8 +29,9 @@ export default class BookmarkCard extends Component {
                     </div>
                     <img src={url} alt={title}/>
                 </a>
-                <hr/>
-                {auth.isLoggedIn() ? (+this.props.ownerId === +localStorage.id? <button type="click" onClick={this.editBookmark}>Edit</button> : null) : null}
+                <div className="edit">
+                    {auth.isLoggedIn() ? (+this.props.ownerId === +localStorage.id? <button type="click" onClick={this.editBookmark}>Edit</button> : null) : null}
+                </div>
             </div>
 
         );

@@ -29,7 +29,7 @@ export default class BoardCard extends Component {
                         <p>{ description }</p>
                     </div>
                 </Link>
-               <div className="edit">
+                <div className="edit">
                     {auth.isLoggedIn() ? (+this.props.ownerId === +localStorage.id? <button type="click" onClick={this.editBoard}>Edit</button> : null) : null}
                 </div>
             </div>
