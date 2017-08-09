@@ -65,11 +65,11 @@ class Api {
             .send({id, title, description, url})
     )
 
-    validateBoardOwner = (boardId) => (
-        superagent
-            .post(`${API_HOST}/auth/boardowner`)
-            .send({boardId})
-    )
+    // validateBoardOwner = (boardId) => (
+    //     superagent
+    //         .post(`${API_HOST}/auth/boardowner`)
+    //         .send({boardId})
+    // )
 
 
 }

@@ -74,7 +74,7 @@ export default class EditBoard extends Component {
                     <h2 className="error">{this.state.error}</h2>
                     <p>Description: </p>
                     <textarea ref="description" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
-                    <p style = {{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
+                    <p style={{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
                     <hr/>
                     <button type="submit">Edit Board</button>
                     <hr/>
