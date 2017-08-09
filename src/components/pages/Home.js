@@ -138,7 +138,7 @@ export default class Home extends Component {
                 <div>
                     {auth.isLoggedIn() ? <AddButton typeOfElement="Board" callbackFromParent={this.newBoard}/> : null}
                 </div>
-                <div className={`editContainer  ${this.state.isEditBoardOpen ? "show" : ""}`}>
+                <div className={`editContainer ${this.state.isEditBoardOpen ? "show" : ""}`}>
                     <EditBoard show={this.state.isEditBoardOpen} boardInfo={this.state.editBoardInfo} closeEditBoard={this.closeEditBoard} callbackEditBoard={this.editBoard}/>
                 </div>
             </div>
