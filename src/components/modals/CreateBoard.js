@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './CreateBoard.css';
 import  api from '../../api.js'
+var limitOfDescriptionValue = 80;
 
 export default class CreateBoard extends Component {
     constructor(props) {
@@ -10,12 +11,22 @@ export default class CreateBoard extends Component {
         }
         this.state = {
             error: '',
+            descriptionValue: ''
+
         };
+    }
+
+    handleDescriptionInput = (event) => {
+        if ((event.target.value !== this.state.descriptionValue) && (event.target.value.length <= limitOfDescriptionValue)) {
+            this.setState({
+                descriptionValue: event.target.value
+            })
+        }
     }
 
     _handleCreateBoard = (e) => {
         e.preventDefault();
-        if (this.refs.title.value.length > 0 && this.refs.description.value.length > 0) {
+        if (this.refs.title.value.length > 0 && this.refs.description.value.length > 0 && this.refs.description.value.length <= limitOfDescriptionValue) {
         api.createBoard(this.refs.title.value, this.refs.description.value)
             .then(res => {
                 this.props.callbackFromParent(res.body)
@@ -40,7 +51,8 @@ export default class CreateBoard extends Component {
                     <hr/>
                     <h2 className="error">{this.state.error}</h2>
                     <p>Description: </p>
-                    <textarea ref="description" placeholder="Description of the board"/>
+                    <textarea ref="description" placeholder="Description of the board" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
+                    <p style = {{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
                     <hr/>
                     <button type="submit">Create Board</button>
                     <hr/>

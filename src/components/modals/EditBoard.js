@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './EditBoard.css';
 // import  api from '../../api.js'
+var limitOfDescriptionValue = 80;
 
 export default class EditBoard extends Component {
     constructor(props) {
@@ -42,7 +43,7 @@ export default class EditBoard extends Component {
     }
 
     handleDescriptionInput = (event) => {
-        if (event.target.value !== this.state.descriptionValue) {
+        if ((event.target.value !== this.state.descriptionValue) && (event.target.value.length <= limitOfDescriptionValue)) {
             this.setState({
                 descriptionValue: event.target.value
             })
@@ -73,6 +74,7 @@ export default class EditBoard extends Component {
                     <h2 className="error">{this.state.error}</h2>
                     <p>Description: </p>
                     <textarea ref="description" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
+                    <p style = {{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
                     <hr/>
                     <button type="submit">Edit Board</button>
                     <hr/>

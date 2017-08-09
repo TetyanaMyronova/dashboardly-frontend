@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './CreateBookmark.css';
 import  api from '../../api.js';
 // import {browserHistory as history, Router} from 'react-router';
+var limitOfDescriptionValue = 80;
 
 export default class CreateBookmark extends Component {
     constructor(props) {
@@ -13,7 +14,16 @@ export default class CreateBookmark extends Component {
         }
         this.state = {
             error: '',
+            descriptionValue: ''
         };
+    }
+
+    handleDescriptionInput = (event) => {
+        if ((event.target.value !== this.state.descriptionValue) && (event.target.value.length <= limitOfDescriptionValue)) {
+            this.setState({
+                descriptionValue: event.target.value
+            })
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -55,7 +65,8 @@ export default class CreateBookmark extends Component {
                     <hr/>
                     <h2 className="error">{this.state.error}</h2>
                     <p>Description: </p>
-                    <textarea ref="description" placeholder="Description of the bookmark"/>
+                    <textarea ref="description" placeholder="Description of the board" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
+                    <p style = {{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
                     <hr/>
                     <button type="submit">Create Bookmark</button>
                     <hr/>
