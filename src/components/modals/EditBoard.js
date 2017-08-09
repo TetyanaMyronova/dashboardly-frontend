@@ -41,19 +41,9 @@ class EditBoard extends Component {
     }
 
     _handleDeleteBoard = (e) => {
-        e.preventDefault();
-        // this.props.callbackEditBoard({
-        //     id: this.state.id,
-        //     title: this.state.titleValue,
-        //     description: this.state.descriptionValue
-        // });
         api.deleteBoard(this.state.id)
-
             .then(res => this.props.router.push('/'))
             .catch(err => this.setState(console.error))
-
-        )
-
     }
 
     handleTitleInput = (event) => {
