@@ -1,8 +1,8 @@
-.add-button {
+.add-button.hide {
   visibility: hidden;
 }
 
-.add-button.show {
+.add-button {
   display: flex;
   justify-content: center;
   align-items: center;

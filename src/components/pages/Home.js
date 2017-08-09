@@ -22,6 +22,8 @@ export default class Home extends Component {
         };
     }
 
+    closeEditBoard = () =>  this.setState({isEditBoardOpen: false})
+
     componentDidMount() {
         this._fetchBoards();
     }
@@ -40,7 +42,7 @@ export default class Home extends Component {
         newBoardList.push(newBoardInfo);
         this.setState({
             boards: newBoardList
-        })
+        });
         //this.goToNewBoard(newBoardInfo.id); need to be revised later # complete task 4
     }
 
@@ -60,7 +62,7 @@ export default class Home extends Component {
 
                 this.setState({
                     editBoardInfo: boardInfo
-                })
+                });
                 this.renderEditBoard(boardInfo);
             }
         }
@@ -78,14 +80,13 @@ export default class Home extends Component {
                             return board;
                         }
                     }
-                )
+                );
                 this.setState({
                     boards: updatedBoards,
                     isEditBoardOpen: false
 
-                })
-            })
-
+                });
+            });
     }
 
     deleteBoard=(boardInfo)=>{
@@ -99,8 +100,7 @@ export default class Home extends Component {
         //Render only if we have board information, summoned from an edit button
         this.setState({
             isEditBoardOpen: true
-
-        })
+        });
     }
 
 
@@ -110,7 +110,7 @@ export default class Home extends Component {
 
     render() {
         let {boards} = this.state;
-        console.log(`Rendering=${JSON.stringify(this.state.boards)}`);
+        //console.log(`Rendering=${JSON.stringify(this.state.boards)}`);
         return (
             <div className="home">
                 <div className="boardCards">
@@ -125,10 +125,12 @@ export default class Home extends Component {
                             callbackEditBoard={this.summonEditBoard}
                         />
                     )}
+                </div>
+                <div>
                     {auth.isLoggedIn() ? <AddButton typeOfElement="Board" callbackFromParent={this.newBoard}/> : null}
                 </div>
-                <div className="editBoard">
-                    <EditBoard show={this.state.isEditBoardOpen} boardInfo={this.state.editBoardInfo} callbackEditBoard={this.editBoard}/>
+                <div className={`editContainer  ${this.state.isEditBoardOpen ? "show" : ""}`}>
+                    <EditBoard show={this.state.isEditBoardOpen} boardInfo={this.state.editBoardInfo} closeEditBoard={this.closeEditBoard} callbackEditBoard={this.editBoard}/>
                 </div>
             </div>
         );

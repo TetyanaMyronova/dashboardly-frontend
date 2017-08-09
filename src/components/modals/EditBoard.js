@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import onClickOutside from 'react-onclickoutside';
+
 import './EditBoard.css';
 import  api from '../../api.js'
 var limitOfDescriptionValue = 80;
 
-export default class EditBoard extends Component {
+class EditBoard extends Component {
     constructor(props) {
         super(props);
         this.defaultProps = {
@@ -22,6 +24,10 @@ export default class EditBoard extends Component {
             titleValue: this.props.boardInfo.title,
             descriptionValue: this.props.boardInfo.description
         };
+    }
+
+    handleClickOutside = () => {
+        this.props.closeEditBoard();
     }
 
     _handleEditBoard = (e) => {
@@ -81,26 +87,23 @@ export default class EditBoard extends Component {
         return (
             <div className={`editBoard ${show ? "show" : ""}`}>
                 <h1>Edit Board</h1>
-                <form onSubmit={this._handleEditBoard}>
+                <form className="editBoardForm" onSubmit={this._handleEditBoard}>
                     <p>Title: </p>
                     <input ref="title" onInput={this.handleTitleInput} value={this.state.titleValue}/>
                     <hr/>
                     <h2 className="error">{this.state.error}</h2>
                     <p>Description: </p>
-                    <textarea ref="description" onInput={this.handleDescriptionInput}
-                              value={this.state.descriptionValue}/>
-                    <p style={{
-                        color: 'darkblue',
-                        textAlign: 'right'
-                    }}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
-                    <hr/>
-                    <button type="submit">Edit Board</button>
-                    <button onClick={this._handleDeleteBoard} type="click">Delete Board</button>
-                    <hr/>
+                    <textarea ref="description" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
+                    <p style={{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
+                    <div className="editBoardButton">
+                        <button type="submit">Edit</button>
+                        <button onClick={this._handleDeleteBoard} type="click">Delete Board</button>
+                    </div>
                 </form>
             </div>
-
-        )
+        );
     }
 
 }
+
+export default onClickOutside(EditBoard);
