@@ -65,6 +65,12 @@ class Api {
             .send({id, title, description, url})
     )
 
+    deleteBoard = (id) => (
+        superagent
+            .delete(`${API_HOST}/boards/${id}`)
+            .send({id})
+    )
+
     // validateBoardOwner = (boardId) => (
     //     superagent
     //         .post(`${API_HOST}/auth/boardowner`)
