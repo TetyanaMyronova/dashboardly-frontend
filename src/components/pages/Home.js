@@ -37,6 +37,15 @@ export default class Home extends Component {
             .catch(console.error);
     }
 
+    _deleteBoard = () => {
+        api.getBoardsList()
+            .then(res => {
+                //console.log(`boards=${JSON.stringify(res.body.boards)}`);
+                this.setState({boards: res.body.boards});
+            })
+            .catch(console.error);
+    }
+
     newBoard = (newBoardInfo) => {
         let newBoardList = this.state.boards;
         newBoardList.push(newBoardInfo);
@@ -89,19 +98,19 @@ export default class Home extends Component {
             });
     }
 
-    deleteBoard=(boardInfo)=>{
-        api.deleteBoard(boardInfo.id)
-            .then(result => {
-
-            })
-    }
-
     renderEditBoard = (boardInfo) => {
         //Render only if we have board information, summoned from an edit button
         this.setState({
             isEditBoardOpen: true
         });
     }
+
+    // deleteBoard=(boardInfo)=>{
+    //     api.deleteBoard(boardInfo.id)
+    //         .then(result => {
+    //
+    //         })
+    // }
 
 
     // componentDidUpdate(){

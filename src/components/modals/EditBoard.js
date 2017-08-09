@@ -48,9 +48,11 @@ class EditBoard extends Component {
         //     description: this.state.descriptionValue
         // });
         api.deleteBoard(this.state.id)
-            .then(result => {
-                console.log('The board was deleted' +JSON.stringify(result.body) );
-            })
+
+            .then(res => this.props.router.push('/'))
+            .catch(err => this.setState(console.error))
+
+        )
 
     }
 
