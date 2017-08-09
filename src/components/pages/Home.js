@@ -88,6 +88,13 @@ export default class Home extends Component {
 
     }
 
+    deleteBoard=(boardInfo)=>{
+        api.deleteBoard(boardInfo.id)
+            .then(result => {
+
+            })
+    }
+
     renderEditBoard = (boardInfo) => {
         //Render only if we have board information, summoned from an edit button
         this.setState({

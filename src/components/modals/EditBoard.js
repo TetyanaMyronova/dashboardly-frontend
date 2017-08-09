@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './EditBoard.css';
-// import  api from '../../api.js'
+import  api from '../../api.js'
 var limitOfDescriptionValue = 80;
 
 export default class EditBoard extends Component {
@@ -34,6 +34,20 @@ export default class EditBoard extends Component {
 
     }
 
+    _handleDeleteBoard = (e) => {
+        e.preventDefault();
+        // this.props.callbackEditBoard({
+        //     id: this.state.id,
+        //     title: this.state.titleValue,
+        //     description: this.state.descriptionValue
+        // });
+        api.deleteBoard(this.state.id)
+            .then(result => {
+                console.log('The board was deleted' +JSON.stringify(result.body) );
+            })
+
+    }
+
     handleTitleInput = (event) => {
         if (event.target.value !== this.state.titleValue) {
             this.setState({
@@ -50,7 +64,7 @@ export default class EditBoard extends Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState){
+    componentDidUpdate(prevProps, prevState) {
         //console.log(`EditBoardUpdated curProps ${JSON.stringify(this.props)}`);
         //console.log(`prevProps=${JSON.stringify(prevProps)}`);
         if (prevProps.boardInfo.id !== this.props.boardInfo.id) {
@@ -73,13 +87,19 @@ export default class EditBoard extends Component {
                     <hr/>
                     <h2 className="error">{this.state.error}</h2>
                     <p>Description: </p>
-                    <textarea ref="description" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
-                    <p style={{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
+                    <textarea ref="description" onInput={this.handleDescriptionInput}
+                              value={this.state.descriptionValue}/>
+                    <p style={{
+                        color: 'darkblue',
+                        textAlign: 'right'
+                    }}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
                     <hr/>
                     <button type="submit">Edit Board</button>
+                    <button onClick={this._handleDeleteBoard} type="click">Delete Board</button>
                     <hr/>
                 </form>
             </div>
+
         )
     }
 
