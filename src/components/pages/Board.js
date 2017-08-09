@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import api from '../../api';
-//import BookmarkCard from '../elements/BookmarkCard';
+import BookmarkCard from '../elements/BookmarkCard';
 import auth from '../../auth';
 import AddButton from '../elements/AddButton';
 import './Board.css';

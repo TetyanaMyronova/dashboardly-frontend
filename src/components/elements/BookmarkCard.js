@@ -1,8 +1,4 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
-=======
-// import {Link} from 'react-router';
->>>>>>> cd7a0732cd8f296c4b43c4a75abd1ef0857bfadb
 import './BookmarkCard.css';
 import auth from '../../auth';
 
