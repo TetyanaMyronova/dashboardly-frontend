@@ -1,6 +1,7 @@
 import React from 'react';
 import CreateBoard from '../modals/CreateBoard';
-import CreateBookmark from '../modals/CreateBookmark'
+import CreateBookmark from '../modals/CreateBookmark';
+import './AddButton.css';
 
 export default class AddButton extends React.Component {
     constructor(props) {
@@ -52,11 +53,13 @@ export default class AddButton extends React.Component {
 
     render() {
         return (
-            <div className="add-button">
-                <i className="fa fa-plus fa-2x" onClick={this.createElementClick}/>
+            <div className={`add-interface ${this.state.isCreateElementOpen ? "show" : ""}`}>
+                <div className={`add-button ${!this.state.isCreateElementOpen ? "show" : ""}`}>
+                    <i className="fa fa-plus fa-2x" onClick={this.createElementClick}/>
+                </div>
                 {this.newElement()}
             </div>
-        )
+        );
     }
 
 }
