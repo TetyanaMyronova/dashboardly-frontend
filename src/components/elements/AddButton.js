@@ -11,7 +11,7 @@ export default class AddButton extends React.Component {
             typeOfElement: '',
             boardId: 0
 
-        }
+        };
         this.state = {
             isCreateElementOpen: false
         };
@@ -19,7 +19,7 @@ export default class AddButton extends React.Component {
 
     createElementClick = (e) => {
        e.preventDefault();
-        this.setState({isCreateElementOpen: !this.state.isCreateElementOpen})
+        this.setState({isCreateElementOpen: !this.state.isCreateElementOpen});
         //console.log('test');
     }
 
@@ -30,7 +30,7 @@ export default class AddButton extends React.Component {
         this.props.callbackFromParent(newBoardInfo);
         this.setState({
             isCreateElementOpen: false
-        })
+        });
     }
 
     newBookmark = (newBookmarkInfo) => {
@@ -38,23 +38,23 @@ export default class AddButton extends React.Component {
         this.props.callbackFromParent(newBookmarkInfo);
         this.setState({
             isCreateElementOpen: false
-        })
+        });
     }
 
     newElement() {
         if (this.props.typeOfElement === 'Board') {
-            return <CreateBoard show={this.state.isCreateElementOpen} closeCreateElement={this.closeCreateElement} callbackFromParent={this.newBoard}></CreateBoard>
+            return <CreateBoard show={this.state.isCreateElementOpen} closeCreateElement={this.closeCreateElement} callbackFromParent={this.newBoard}></CreateBoard>;
         } else if (this.props.typeOfElement === 'Bookmark'){
-            return <CreateBookmark boardId={this.props.boardId} show={this.state.isCreateElementOpen} closeCreateElement={this.closeCreateElement} callbackFromParent={this.newBookmark}/>
+            return <CreateBookmark boardId={this.props.boardId} show={this.state.isCreateElementOpen} closeCreateElement={this.closeCreateElement} callbackFromParent={this.newBookmark}/>;
         } else {
-            return <div> Empty</div>
+            return <div> Empty</div>;
         }
     }
 
     render() {
         return (
             <div className={`add-interface ${this.state.isCreateElementOpen ? "show" : ""}`}>
-                <div className={`add-button ${!this.state.isCreateElementOpen ? "show" : ""}`}>
+                <div className={`add-button ${this.state.isCreateElementOpen ? "hide" : ""}`}>
                     <i className="fa fa-plus fa-2x" onClick={this.createElementClick}/>
                 </div>
                 {this.newElement()}

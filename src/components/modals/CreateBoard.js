@@ -67,7 +67,7 @@ class CreateBoard extends Component {
                         {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}
                     </p>
                     <div className="createBoardButton">
-                        <button type="submit">Create Board</button>
+                        <button type="submit">Create</button>
                     </div>
                 </form>
             </div>
