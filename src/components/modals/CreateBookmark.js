@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import onClickOutside from 'react-onclickoutside';
 
 import './CreateBookmark.css';
-import  api from '../../api.js';
+import  auth from '../../auth.js';
 
 var limitOfDescriptionValue = 80;
 
@@ -41,18 +41,18 @@ class CreateBookmark extends Component {
 
     _handleCreateBookmark = (e) => {
         e.preventDefault();
-        console.log(this.props.boardId);
-        if (this.refs.title.value.length > 0 && this.refs.description.value.length > 0 && this.refs.url.value.length > 0) {
-            api.createBookmark(this.props.boardId, this.refs.title.value, this.refs.url.value, this.refs.description.value)
+        console.log("BoardId=",this.props.boardId);
+        if (this.refs.title.value.length > 0 && this.refs.url.value.length > 0) {
+            auth.createBookmark(this.props.boardId, this.refs.title.value, this.refs.url.value, this.refs.description.value)
                 .then(res => {
-                    this.props.callbackFromParent(res.body)
+                    this.props.callbackFromParent(res);
                     if (this.state.error !== '') {
-                        this.setState({error: ''})
+                        this.setState({error: ''});
                     }
                 })
-                .catch(err => this.setState(console.error))
+                .catch(err => this.setState(console.error));
         } else {
-            this.setState({error: "Please enter a Title, URL, and Description"})
+            this.setState({error: "Please enter a Title, URL, and Description"});
         }
     }
 

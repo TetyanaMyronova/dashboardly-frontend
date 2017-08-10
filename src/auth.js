@@ -70,7 +70,19 @@ module.exports = {
         .catch(err => {
             throw new Error(err);
         });
+    },
+    
+    createBookmark(boardId, title, url, description) {
+        console.log("sending=",boardId);
+        return api.createBookmark(localStorage.token, boardId, title, url, description)
+        .then(res=> {
+            return res.body;
+        })
+        .catch(err => {
+            throw new Error(err);
+        });
     }
+    
     // getUserId() {
     //     return localStorage.id;
     //
