@@ -51,27 +51,28 @@ class CreateBoard extends Component {
         return (
             <div className={`createBoard ${show ? "show" : ""}`}>
                 <h1>Create New Board</h1>
-                <form className="createBoardForm" onSubmit={this._handleCreateBoard}>
-                    <p>Title: </p>
-                    <input ref="title" placeholder="Board title"/>
-                    <hr/>
-                    <h2 className="error">{this.state.error}</h2>
-                    <p>Description: </p>
-
-                    <textarea ref="description" placeholder="Description of the board"
-                              onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
-                    <p style={{
-                        color: 'darkblue',
-                        textAlign: 'right'
-                    }}>
-                        {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}
-                    </p>
-                    <div className="createBoardButton">
-                        <button type="submit">Create</button>
-                    </div>
-                </form>
+                <h2 className="error">{this.state.error}</h2>
+                <div>
+                    <form className="createBoardForm" onSubmit={this._handleCreateBoard}>
+                        <input ref="title" placeholder="Title"/>
+    
+                        <textarea ref="description" placeholder="Description"
+                                  onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
+                        <div className="descriptionCounter">
+                            <p style={{
+                                color: 'darkblue',
+                                textAlign: 'right'
+                            }}>
+                                {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}
+                            </p>
+                        </div>
+                        <div className="createBoardButton">
+                            <button type="submit">Create</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        )
+        );
     }
 
 }

@@ -1,13 +1,13 @@
 .createBoard{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     position: absolute;
     visibility: hidden;
-    top: 25%;
-    left: 25%;
-    min-height: 50%;
-    min-width: 50%;
+    top: 25vh;
+    left: 25vw;
+    height: 50vh;
+    width: 50vw;
 }
 
 .createBoard.show {
@@ -19,14 +19,62 @@
 
 }
 
+.createBoard h1, .createBoard h2 {
+    padding-left: 10px;
+}
+
 .createBoardForm {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    
-    height: 70%;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1rem;
+    height: 40vh;
+    width: 50vw;
+}
+
+.createBoardForm input {
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    font-size: 1.5rem;
+    margin: 5px;
+    padding: 3px;
+    width: 40vw;
 }
 
 .createBoardForm textarea {
+    border: none;
+    border-bottom: 1px solid lightgrey;
     resize: none;
+    font-size: 1.2rem;
+    margin: 5px;
+    padding: 3px;
+    height: 25vh;
+    width: 40vw;
+}
+
+.createBoardForm div {
+    width: 40vw;
+}
+
+.createBoardForm.descriptionCounter {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.createBoardButton {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.createBoardButton button {
+    border: none;
+    background-color: transparent;
+    color: dimgrey;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.createBoardButton button:hover {
+    color: deepskyblue;
 }

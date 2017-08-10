@@ -30,3 +30,15 @@
 .editBoardForm textarea {
     resize: none;
 }
+
+.editBoardButton button {
+  border: none;
+  background-color: transparent;
+  color: dimgrey;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.editBoardButton button:hover {
+  color: deepskyblue;
+}
