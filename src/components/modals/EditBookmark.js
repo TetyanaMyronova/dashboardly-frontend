@@ -4,7 +4,7 @@ import onClickOutside from 'react-onclickoutside';
 import './EditBookmark.css';
 var limitOfDescriptionValue = 80;
 
-export default class EditBookmark extends Component {
+class EditBookmark extends Component {
     constructor(props) {
         super(props);
         this.defaultProps = {
@@ -25,6 +25,10 @@ export default class EditBookmark extends Component {
             descriptionValue: this.props.bookmarkInfo.description,
             urlValue:  this.props.bookmarkInfo.url,
         };
+    }
+
+    handleClickOutside = () => {
+        this.props.closeEditBookmark();
     }
 
     _handleEditBookmark = (e) => {
@@ -81,19 +85,28 @@ export default class EditBookmark extends Component {
         return (
             <div className={`editBookmark ${show ? "show" : ""}`}>
                 <h1>Edit Bookmark</h1>
-                <form className="editBookmarkForm" onSubmit={this._handleEditBookmark}>
-                    <input ref="title" onInput={this.handleTitleInput} value={this.state.titleValue}/>
-                    <h2 className="error">{this.state.error}</h2>
-                    <textarea ref="description" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
-                    <p style={{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
-                    <p>Url: </p>
-                    <input ref="url" onInput={this.handleUrlInput} value={this.state.urlValue}/>
-                    <div>
-                        <button type="submit">Edit</button>
-                    </div>
-                </form>
+                <h2 className="error">{this.state.error}</h2>
+                <div>
+                    <form className="editBookmarkForm" onSubmit={this._handleEditBookmark}>
+                        <input ref="title" onInput={this.handleTitleInput} value={this.state.titleValue}/>
+                        <input ref="url" onInput={this.handleUrlInput} value={this.state.urlValue}/>
+                        
+                        <textarea
+                            ref="description"
+                            onInput={this.handleDescriptionInput}
+                            value={this.state.descriptionValue}
+                        />
+                        <div className="descriptionCounter">
+                            <p style={{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
+                        </div>
+                        <div className="editBookmarkButton">
+                            <button type="submit">Edit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         );
     }
-
 }
+
+export default onClickOutside(EditBookmark);

@@ -25,8 +25,10 @@ export default class Board extends Component {
         };
     }
   
+  closeEditBookmark = () =>  this.setState({isEditBookmarkOpen: false})
+  
   componentDidMount() {
-    this.fetchBoardData()
+    this.fetchBoardData();
   }
 
     fetchBoardData = () => {
@@ -127,8 +129,8 @@ export default class Board extends Component {
             )}
               {auth.isLoggedIn() ? <AddButton typeOfElement="Bookmark" callbackFromParent={this.newBookmark}/> : null}
         </div>
-        <div className="editBookmark">
-            <EditBookmark show={this.state.isEditBookmarkOpen} bookmarkInfo={this.state.editBookmarkInfo} callbackEditBookmark={this.editBookmark}/>
+        <div className={`editContainer ${this.state.isEditBookmarkOpen ? "show" : ""}`}>
+            <EditBookmark show={this.state.isEditBookmarkOpen} bookmarkInfo={this.state.editBookmarkInfo} closeEditBookmark={this.closeEditBookmark} callbackEditBookmark={this.editBookmark}/>
         </div>
       </div>
     );
