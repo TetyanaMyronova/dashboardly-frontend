@@ -63,7 +63,7 @@ class Api {
             .send({id, title, description})
     )
 
-    updateBookmark = (token, id, title, description, url) => (
+    updateBookmark = (token, id, title, url, description) => (
         superagent
             .patch(`${API_HOST}/bookmarks/${id}`)
             .send({id, title, description, url})

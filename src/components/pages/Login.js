@@ -19,7 +19,7 @@ export default class Login extends Component {
             auth.login(email, password)
                 .then(res => this.props.router.push('/'))
                 .catch(err => {
-                    console.log(`Login Error=${err}`);
+                    // console.log(`Login Error=${err}`);
                     this.setState({error: err.message});
                 });
         }

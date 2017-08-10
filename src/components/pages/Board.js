@@ -11,7 +11,7 @@ export default class Board extends Component {
         super(props);
         this.defaultProps = {
             callbackDeleteBookmark: ''
-        }
+        };
         this.state = {
             title: "",
             description: "",
@@ -55,9 +55,9 @@ export default class Board extends Component {
                     description: res[0].body.description,
                     bookmarks: res[1].body.bookmarks,
                     ownerId: res[0].body.ownerId
-                })
+                });
             })
-            .catch(console.error)
+            .catch(console.error);
     }
 
   newBookmark = (newBookmarkInfo) => {
@@ -65,7 +65,7 @@ export default class Board extends Component {
       newBookmarkList.push(newBookmarkInfo);
       this.setState({
           bookmarks: newBookmarkList
-      })
+      });
   }
 
     summonEditBookmark = (bookmarkInfo) => {
@@ -81,7 +81,7 @@ export default class Board extends Component {
 
                 this.setState({
                     editBookmarkInfo: bookmarkInfo
-                })
+                });
                 this.renderEditBookmark(bookmarkInfo);
             }
         }
@@ -90,7 +90,7 @@ export default class Board extends Component {
 
     editBookmark = (bookmarkInfo) => {
         //console.log(`Board bookmark Info callback ${JSON.stringify(bookmarkInfo)}`);
-        api.updateBookmark(bookmarkInfo.id, bookmarkInfo.title, bookmarkInfo.description, bookmarkInfo.url)
+        auth.updateBookmark(bookmarkInfo.id, bookmarkInfo.title, bookmarkInfo.description, bookmarkInfo.url)
             .then(result => {
                 console.log(result);
                 let updatedBookmarks = this.state.bookmarks.map(bookmark => {

@@ -90,9 +90,9 @@ export default class Home extends Component {
 
     editBoard = (boardInfo) => {
         // console.log(`Calling API on ${JSON.stringify(boardInfo)}`);
-        api.updateBoard(boardInfo.id, boardInfo.title, boardInfo.description)
+        auth.updateBoard(boardInfo.id, boardInfo.title, boardInfo.description)
             .then(result => {
-                // console.log(`Checking return of res ${JSON.stringify(result.body)}`);
+                console.log(`Checking return of res ${JSON.stringify(result.body)}`);
                let updatedBoards = this.state.boards.map(board => {
                         if (board.id === result.body.id) {
                            return result.body;
