@@ -33,7 +33,7 @@ class EditBookmark extends Component {
 
     _handleEditBookmark = (e) => {
         e.preventDefault();
-        console.log(JSON.stringify(this.defaultProps));
+        //console.log(JSON.stringify(this.defaultProps));
         this.props.callbackEditBookmark({
             id: this.state.id,
             title: this.state.titleValue,

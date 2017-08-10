@@ -16,13 +16,13 @@ export default class BoardCard extends Component {
     editBoard = (e) => {
         e.preventDefault();
         // console.log(`Editing boardId=${this.props.id}`);
-        console.log(`This is basic on EditBoard ${JSON.stringify(this.props)}`);
+        //console.log(`This is basic on EditBoard ${JSON.stringify(this.props)}`);
         this.props.callbackEditBoard(this.props);
     }
 
     deleteBoard = (e) => {
         e.preventDefault();
-        console.log(`This is basic on DeleteBoard ${JSON.stringify(this.props)}`);
+        //console.log(`This is basic on DeleteBoard ${JSON.stringify(this.props)}`);
         this.props.callbackDeleteBoard(this.props.id);
     }
 

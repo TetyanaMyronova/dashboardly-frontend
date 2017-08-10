@@ -92,7 +92,7 @@ export default class Board extends Component {
         //console.log(`Board bookmark Info callback ${JSON.stringify(bookmarkInfo)}`);
         auth.updateBookmark(bookmarkInfo.id, bookmarkInfo.title, bookmarkInfo.description, bookmarkInfo.url)
             .then(result => {
-                console.log(result);
+                //console.log(result);
                 let updatedBookmarks = this.state.bookmarks.map(bookmark => {
                     //console.log(`Bookmark ID ${bookmark.id} = ${result.body.id}`);
                         if (+bookmark.id === +result.body.id) {

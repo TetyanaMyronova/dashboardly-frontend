@@ -36,7 +36,7 @@ class CreateBoard extends Component {
         if (this.refs.title.value.length > 0 && this.refs.description.value.length <= limitOfDescriptionValue) {
             auth.createBoard(this.refs.title.value, this.refs.description.value)
             .then(res => {
-                console.log(`From Createboard with res=${JSON.stringify(res)}`);
+                //console.log(`From Createboard with res=${JSON.stringify(res)}`);
                 this.props.callbackFromParent(res);
                 if (this.state.error !== '') {
                     this.setState({error: ''});

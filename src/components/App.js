@@ -4,8 +4,6 @@ import Menu from './modals/Menu';
 import './App.css';
 import api from '../api'
 
-// import TitleHandler from './elements/TitleHandler';
-
 class App extends Component {
     constructor(props) {
         super(props)
@@ -38,7 +36,6 @@ class App extends Component {
                 })
             }
         }
-        console.log(`${this.state.title}`);
     }
 
     render() {

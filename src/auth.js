@@ -49,7 +49,7 @@ module.exports = {
         if(localStorage.token) {
             return api.getUser(localStorage.token)
             .then(res => {
-                console.log(`Me response=${JSON.stringify(res)}`);
+                //console.log(`Me response=${JSON.stringify(res)}`);
                 localStorage.id = res.body.id;
                 localStorage.email = res.body.email;
                 localStorage.avatarurl = res.body.avatarUrl;
@@ -67,7 +67,7 @@ module.exports = {
     createBoard(title, description) {
         return api.createBoard(localStorage.token, title, description)
         .then(res => {
-            console.log(`Success, boardID=`,res.body);
+            //console.log(`Success, boardID=`,res.body);
             return res.body; //Fix to send boardId
         })
         .catch(err => {
@@ -79,7 +79,7 @@ module.exports = {
         
         return api.updateBoard(localStorage.token, boardId, title, description)
         .then(res => {
-            console.log(`Success, boardID=`,res.body);
+            //console.log(`Success, boardID=`,res.body);
             return res;
         })
         .catch(err => {

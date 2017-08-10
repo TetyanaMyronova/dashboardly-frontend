@@ -56,7 +56,7 @@ export default class Home extends Component {
     }
 
     newBoard = (newBoardInfo) => {
-        console.log(`From home, new board=${JSON.stringify(newBoardInfo)}`);
+        //console.log(`From home, new board=${JSON.stringify(newBoardInfo)}`);
         let newBoardList = this.state.boards;
         newBoardList.push(newBoardInfo);
         this.setState({
@@ -92,7 +92,7 @@ export default class Home extends Component {
         // console.log(`Calling API on ${JSON.stringify(boardInfo)}`);
         auth.updateBoard(boardInfo.id, boardInfo.title, boardInfo.description)
             .then(result => {
-                console.log(`Checking return of res ${JSON.stringify(result.body)}`);
+                //console.log(`Checking return of res ${JSON.stringify(result.body)}`);
                let updatedBoards = this.state.boards.map(board => {
                         if (board.id === result.body.id) {
                            return result.body;
