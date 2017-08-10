@@ -1,4 +1,4 @@
-.createBookmark {
+.createBookmark{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -11,12 +11,10 @@
 }
 
 .createBookmark.show {
-    /*transform: translateX(0px);*/
     opacity: 1;
     visibility: visible;
     z-index: 9999;
-    background: white;
-
+    background-color: white;
 }
 
 .createBookmark h1, .createBookmark h2 {
@@ -33,6 +31,15 @@
     width: 50vw;
 }
 
+.createBookmarkForm input {
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    font-size: 1.5rem;
+    margin: 5px;
+    padding: 3px;
+    width: 40vw;
+}
+
 .createBookmarkForm textarea {
     border: none;
     border-bottom: 1px solid lightgrey;
@@ -42,4 +49,30 @@
     padding: 3px;
     height: 25vh;
     width: 40vw;
+}
+
+.createBookmarkForm div {
+    width: 40vw;
+}
+
+.createBookmarkForm.descriptionCounter {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.createBookmarkButton {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.createBookmarkButton button {
+    border: none;
+    background-color: transparent;
+    color: dimgrey;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.createBookmarkButton button:hover {
+    color: deepskyblue;
 }
