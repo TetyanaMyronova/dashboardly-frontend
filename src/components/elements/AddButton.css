@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   background: green;
   color: white;
   width: 50px;

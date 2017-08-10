@@ -5,7 +5,7 @@ module.exports = {
     signup(email, pass) {
 
         if (localStorage.token) {
-            throw new Error('Already logged in') //revise it later
+            throw new Error('Already logged in'); //revise it later
         }
         else {
             return api.requestSignup(email, pass);
@@ -14,15 +14,18 @@ module.exports = {
 
     login(email, pass) {
         if (localStorage.token) {
-            throw new Error('Already logged in')
+            throw new Error('Already logged in');
         }
         else {
             return api.requestLogin(email, pass)
-                .then(res => {
-                    // console.log(`Login res Body=${JSON.stringify(res.body)}`);
-                    localStorage.token = res.body.token
-                    
-                })
+            .then(res => {
+                // console.log(`Login res Body=${JSON.stringify(res.body)}`);
+                localStorage.token = res.body.token;
+            })
+            .catch(err => {
+                console.log(`Auth Error=${err}`);
+                throw new Error(`Error from server: ${err.message}`);
+            });
         }
     },
 
@@ -72,9 +75,29 @@ module.exports = {
         });
     },
     
+    deleteBoard(boardId) {
+        return api.deleteBoard(localStorage.token, boardId)
+        .then(res=> {
+            return res.body; //No body for delete
+        })
+        .catch(err => {
+            throw new Error(err);
+        });
+    },
+    
     createBookmark(boardId, title, url, description) {
         console.log("sending=",boardId);
         return api.createBookmark(localStorage.token, boardId, title, url, description)
+        .then(res=> {
+            return res.body;
+        })
+        .catch(err => {
+            throw new Error(err);
+        });
+    },
+    
+    deleteBookmark(bookmarkId) {
+        return api.deleteBookmark(localStorage.token, bookmarkId)
         .then(res=> {
             return res.body;
         })
@@ -90,4 +113,4 @@ module.exports = {
     // getAvatar() {
     //     return localStorage.avatarurl;
     // }
-}
+};

@@ -101,26 +101,26 @@ export default class Board extends Component {
                             return bookmark;
                         }
                     }
-                )
+                );
                 this.setState({
                     bookmarks: updatedBookmarks,
                     isEditBookmarkOpen: false
 
-                })
-            })
+                });
+            });
     }
 
     deleteBookmark = (bookmarkId) => {
         //console.log(boardId);
-        api.deleteBookmark(bookmarkId)
+        auth.deleteBookmark(bookmarkId)
             .then(res => {
                 let updatedBookmarks = this.state.bookmarks.filter(bookmark => {
                     return bookmark.id !== bookmarkId;
                 });
                 this.setState({
                     bookmarks: updatedBookmarks
-                })
-            })
+                });
+            });
 
     }
 
@@ -128,8 +128,7 @@ export default class Board extends Component {
         //Render only if we have board information, summoned from an edit button
         this.setState({
             isEditBookmarkOpen: true
-
-        })
+        });
     }
 
 

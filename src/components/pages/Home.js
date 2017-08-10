@@ -111,15 +111,15 @@ export default class Home extends Component {
 
     deleteBoard = (boardId) => {
         //console.log(boardId);
-        api.deleteBoard(boardId)
-            .then(res => {
-                let updatedBoards = this.state.boards.filter(board => {
-                   return board.id !== boardId;
-                });
-                this.setState({
-                    boards: updatedBoards
-                })
-            })
+        auth.deleteBoard(boardId)
+        .then(res => {
+            let updatedBoards = this.state.boards.filter(board => {
+               return board.id !== boardId;
+            });
+            this.setState({
+                boards: updatedBoards
+            });
+        });
 
     }
 

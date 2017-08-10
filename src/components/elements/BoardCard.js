@@ -9,7 +9,7 @@ export default class BoardCard extends Component {
         this.defaultProps = {
             ownerId: 0,
             callbackDeleteBookmark:''
-        }
+        };
         this.state = {};
     }
 

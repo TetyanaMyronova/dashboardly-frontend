@@ -18,19 +18,22 @@ export default class Login extends Component {
         if (email && password) {
             auth.login(email, password)
                 .then(res => this.props.router.push('/'))
-                .catch(err => this.setState(console.error))
+                .catch(err => {
+                    console.log(`Login Error=${err}`);
+                    this.setState({error: err.message});
+                });
         }
         else {
-            this.setState({error: "Please enter an email and password"})
+            this.setState({error: "Please enter an email and password"});
         }
     }
 
     _handleTyping = (e) => {
         if (this.state && this.state.error) {
-            this.setState({error: null})
+            this.setState({error: null});
         }
         if (e.keyCode === ENTER) {
-            this._handleLogin()
+            this._handleLogin();
         }
     }
 
