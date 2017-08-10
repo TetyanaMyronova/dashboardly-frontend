@@ -11,12 +11,10 @@
 }
 
 .createBoard.show {
-    /*transform: translateX(0px);*/
     opacity: 1;
     visibility: visible;
     z-index: 9999;
-    background: white;
-
+    background-color: white;
 }
 
 .createBoard h1, .createBoard h2 {

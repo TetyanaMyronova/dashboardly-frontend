@@ -56,8 +56,12 @@ class CreateBoard extends Component {
                     <form className="createBoardForm" onSubmit={this._handleCreateBoard}>
                         <input ref="title" placeholder="Title"/>
     
-                        <textarea ref="description" placeholder="Description"
-                                  onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
+                        <textarea
+                            ref="description"
+                            placeholder="Description"
+                            onInput={this.handleDescriptionInput}
+                            value={this.state.descriptionValue}
+                        />
                         <div className="descriptionCounter">
                             <p style={{
                                 color: 'darkblue',

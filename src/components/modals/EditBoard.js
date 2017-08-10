@@ -72,19 +72,27 @@ class EditBoard extends Component {
         return (
             <div className={`editBoard ${show ? "show" : ""}`}>
                 <h1>Edit Board</h1>
-                <form className="editBoardForm" onSubmit={this._handleEditBoard}>
-                    <input ref="title" onInput={this.handleTitleInput} value={this.state.titleValue}/>
-                    <h2 className="error">{this.state.error}</h2>
-                    <textarea ref="description" onInput={this.handleDescriptionInput}
-                              value={this.state.descriptionValue}/>
-                    <p style={{
-                        color: 'darkblue',
-                        textAlign: 'right'
-                    }}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
-                    <div className="editBoardButton">
-                        <button type="submit">Edit Board</button>
-                    </div>
-                </form>
+                <h2 className="error">{this.state.error}</h2>
+                <div>
+                    <form className="editBoardForm" onSubmit={this._handleEditBoard}>
+                        <input ref="title" onInput={this.handleTitleInput} value={this.state.titleValue}/>
+    
+                        <textarea
+                            ref="description"
+                            onInput={this.handleDescriptionInput}
+                            value={this.state.descriptionValue}
+                        />
+                        <div className="descriptionCounter">
+                            <p style={{
+                                color: 'darkblue',
+                                textAlign: 'right'
+                            }}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
+                        </div>
+                        <div className="editBoardButton">
+                            <button type="submit">Edit Board</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
         );

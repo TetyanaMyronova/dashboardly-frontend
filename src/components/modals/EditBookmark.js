@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import onClickOutside from 'react-onclickoutside';
+
 import './EditBookmark.css';
-// import  api from '../../api.js'
-// import BookmarkCard from '../elements/BookmarkCard';
 var limitOfDescriptionValue = 80;
 
 export default class EditBookmark extends Component {
@@ -16,8 +16,8 @@ export default class EditBookmark extends Component {
                 description: '',
                 url: ''
             }
-
-        }
+        };
+        
         this.state = {
             error: '',
             id: this.props.bookmarkInfo.id,
@@ -43,7 +43,7 @@ export default class EditBookmark extends Component {
         if (event.target.value !== this.state.titleValue) {
             this.setState({
                 titleValue: event.target.value
-            })
+            });
         }
     }
 
@@ -51,7 +51,7 @@ export default class EditBookmark extends Component {
         if ((event.target.value !== this.state.descriptionValue) && (event.target.value.length <= limitOfDescriptionValue)) {
             this.setState({
                 descriptionValue: event.target.value
-            })
+            });
         }
     }
 
@@ -59,7 +59,7 @@ export default class EditBookmark extends Component {
         if (event.target.value !== this.state.urlValue) {
             this.setState({
                 urlValue: event.target.value
-            })
+            });
         }
     }
 
@@ -72,7 +72,7 @@ export default class EditBookmark extends Component {
                 titleValue: this.props.bookmarkInfo.title,
                 descriptionValue: this.props.bookmarkInfo.description,
                 urlValue: this.props.bookmarkInfo.url
-            })
+            });
         }
     }
 
@@ -81,23 +81,19 @@ export default class EditBookmark extends Component {
         return (
             <div className={`editBookmark ${show ? "show" : ""}`}>
                 <h1>Edit Bookmark</h1>
-                <form onSubmit={this._handleEditBookmark}>
-                    <p>Title: </p>
+                <form className="editBookmarkForm" onSubmit={this._handleEditBookmark}>
                     <input ref="title" onInput={this.handleTitleInput} value={this.state.titleValue}/>
-                    <hr/>
                     <h2 className="error">{this.state.error}</h2>
-                    <p>Description: </p>
                     <textarea ref="description" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
                     <p style={{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
-                    <hr/>
                     <p>Url: </p>
                     <input ref="url" onInput={this.handleUrlInput} value={this.state.urlValue}/>
-                    <hr/>
-                    <button type="submit">Edit Bookmark</button>
-                    <hr/>
+                    <div>
+                        <button type="submit">Edit</button>
+                    </div>
                 </form>
             </div>
-        )
+        );
     }
 
 }

@@ -1,44 +1,79 @@
 .editBoard{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    background-color: white;
+    justify-content: space-around;
     position: absolute;
     visibility: hidden;
-    top: 25%;
-    left: 25%;
-    min-height: 50%;
-    min-width: 50%;
+    top: 25vh;
+    left: 25vw;
+    height: 50vh;
+    width: 50vw;
 }
 
 .editBoard.show {
-    transform: translateX(0px);
     opacity: 1;
     visibility: visible;
     z-index: 9999;
     background-color: white;
 }
 
+.editBoard h1, .editBoard h2 {
+    padding-left: 10px;
+}
+
 .editBoardForm {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    
-    height: 70%;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1rem;
+    height: 40vh;
+    width: 50vw;
+}
+
+
+.editBoardForm input {
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    font-size: 1.5rem;
+    margin: 5px;
+    padding: 3px;
+    width: 40vw;
 }
 
 .editBoardForm textarea {
+    border: none;
+    border-bottom: 1px solid lightgrey;
     resize: none;
+    font-size: 1.2rem;
+    margin: 5px;
+    padding: 3px;
+    height: 25vh;
+    width: 40vw;
+}
+
+.editBoardForm div {
+    width: 40vw;
+}
+
+.editBoardForm.descriptionCounter {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.editBoardButton {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .editBoardButton button {
-  border: none;
-  background-color: transparent;
-  color: dimgrey;
-  font-size: 16px;
-  font-weight: bold;
+    border: none;
+    background-color: transparent;
+    color: dimgrey;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .editBoardButton button:hover {
-  color: deepskyblue;
+    color: deepskyblue;
 }
