@@ -2,13 +2,12 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import './BoardCard.css';
 import auth from '../../auth';
-//import EditBoard from '../modals/EditBoard';
 
 export default class BoardCard extends Component {
     constructor(props) {
         super(props);
         this.defaultProps = {
-            ownerId: 0
+            ownerId: 0,
         }
         this.state = {};
     }
@@ -16,7 +15,14 @@ export default class BoardCard extends Component {
     editBoard = (e) => {
         e.preventDefault();
         // console.log(`Editing boardId=${this.props.id}`);
+        console.log(`This is basic on EditBoard ${JSON.stringify(this.props)}`);
         this.props.callbackEditBoard(this.props);
+    }
+
+    deleteBoard = (e) => {
+        e.preventDefault();
+        console.log(`This is basic on DeleteBoard ${JSON.stringify(this.props)}`);
+        this.props.callbackDeleteBoard(this.props.id);
     }
 
     render() {
@@ -31,6 +37,7 @@ export default class BoardCard extends Component {
                 </Link>
                 <div className="edit">
                     {auth.isLoggedIn() ? (+this.props.ownerId === +localStorage.id? <button type="click" onClick={this.editBoard}>Edit</button> : null) : null}
+                    {auth.isLoggedIn() ? (+this.props.ownerId === +localStorage.id? <button type="click" onClick={this.deleteBoard}>Delete</button> : null) : null}
                 </div>
             </div>
         );

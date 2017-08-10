@@ -5,12 +5,16 @@ import AddButton from '../elements/AddButton';
 import EditBoard from '../modals/EditBoard';
 import auth from '../../auth';
 import './Home.css';
-import {browserHistory as history} from 'react-router';
+// import {browserHistory as history} from 'react-router';
 
 
 export default class Home extends Component {
     constructor(props) {
         super(props);
+        this.defaultProps = {
+            callbackEditBoard: '',
+            callbackDeleteBoard: ''
+        }
         this.state = {
             boards: [],
             editBoardInfo: {
@@ -28,16 +32,11 @@ export default class Home extends Component {
         this._fetchBoards();
     }
 
-    _fetchBoards = () => {
-        api.getBoardsList()
-            .then(res => {
-                //console.log(`boards=${JSON.stringify(res.body.boards)}`);
-                this.setState({boards: res.body.boards});
-            })
-            .catch(console.error);
-    }
+    // componentDidUpdate() {
+    //     console.log('home updated');
+    // }
 
-    _deleteBoard = () => {
+    _fetchBoards = () => {
         api.getBoardsList()
             .then(res => {
                 //console.log(`boards=${JSON.stringify(res.body.boards)}`);
@@ -55,9 +54,9 @@ export default class Home extends Component {
         //this.goToNewBoard(newBoardInfo.id); need to be revised later # complete task 4
     }
 
-    goToNewBoard = (boardId) => {
-        history.push(`/boards/${boardId}`);
-    }
+    // goToNewBoard = (boardId) => {
+    //     history.push(`/boards/${boardId}`);
+    // }
 
     summonEditBoard = (boardInfo) => {
         //This is the function for the [Edit] button on the board
@@ -98,6 +97,20 @@ export default class Home extends Component {
             });
     }
 
+    deleteBoard = (boardId) => {
+        //console.log(boardId);
+        api.deleteBoard(boardId)
+            .then(res => {
+                let updatedBoards = this.state.boards.filter(board => {
+                   return board.id !== boardId;
+                });
+                this.setState({
+                    boards: updatedBoards
+                })
+            })
+
+    }
+
     renderEditBoard = (boardInfo) => {
         //Render only if we have board information, summoned from an edit button
         this.setState({
@@ -105,17 +118,6 @@ export default class Home extends Component {
         });
     }
 
-    // deleteBoard=(boardInfo)=>{
-    //     api.deleteBoard(boardInfo.id)
-    //         .then(result => {
-    //
-    //         })
-    // }
-
-
-    // componentDidUpdate(){
-    //     console.log(`Home's current state=${JSON.stringify(this.state.editBoardInfo)}`);
-    // }
 
     render() {
         let {boards} = this.state;
@@ -132,6 +134,7 @@ export default class Home extends Component {
                             description={b.description}
                             updatedAt={b.updatedAt}
                             callbackEditBoard={this.summonEditBoard}
+                            callbackDeleteBoard={this.deleteBoard}
                         />
                     )}
                 </div>
