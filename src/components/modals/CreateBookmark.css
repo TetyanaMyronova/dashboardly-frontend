@@ -1,13 +1,13 @@
 .createBookmark {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     position: absolute;
     visibility: hidden;
-    top: 25%;
-    left: 25%;
-    min-height: 50%;
-    min-width: 50%;
+    top: 25vh;
+    left: 25vw;
+    height: 50vh;
+    width: 50vw;
 }
 
 .createBookmark.show {
@@ -19,14 +19,27 @@
 
 }
 
+.createBookmark h1, .createBookmark h2 {
+    padding-left: 10px;
+}
+
 .createBookmarkForm {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    
-    height: 70%;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1rem;
+    height: 40vh;
+    width: 50vw;
 }
 
 .createBookmarkForm textarea {
+    border: none;
+    border-bottom: 1px solid lightgrey;
     resize: none;
+    font-size: 1.2rem;
+    margin: 5px;
+    padding: 3px;
+    height: 25vh;
+    width: 40vw;
 }

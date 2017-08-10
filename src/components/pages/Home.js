@@ -31,7 +31,7 @@ export default class Home extends Component {
     _fetchBoards = () => {
         api.getBoardsList()
             .then(res => {
-                //console.log(`boards=${JSON.stringify(res.body.boards)}`);
+                console.log(`boards=${JSON.stringify(res.body.boards)}`);
                 this.setState({boards: res.body.boards});
             })
             .catch(console.error);

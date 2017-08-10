@@ -42,6 +42,9 @@ module.exports = {
                 localStorage.email = res.body.email;
                 localStorage.avatarurl = res.body.avatarUrl;
                 return localStorage;
+            })
+            .catch(err => {
+                delete localStorage.token;
             });
     },
 

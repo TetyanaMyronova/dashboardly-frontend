@@ -63,15 +63,10 @@ class CreateBookmark extends Component {
             <div className={`createBookmark ${show ? "show" : ""}`}>
                 <h1>Create New Bookmark</h1>
                 <form className="createBookmarkForm" onSubmit={this._handleCreateBookmark}>
-                    <p>Title: </p>
-                    <input ref="title" placeholder="Bookmark title"/>
-                    <hr/>
-                    <p>Bookmark URL: </p>
-                    <input ref="url" placeholder="Bookmark url"/>
-                    <hr/>
+                    <input ref="title" placeholder="Title"/>
+                    <input ref="url" placeholder="URL"/>
                     <h2 className="error">{this.state.error}</h2>
-                    <p>Description: </p>
-                    <textarea ref="description" placeholder="Description of the board" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
+                    <textarea ref="description" placeholder="Description" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
                     <p style={{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
                     <div className="createBookmarkButton">
                         <button type="submit">Create Bookmark</button>
