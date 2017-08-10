@@ -9,6 +9,9 @@ import EditBookmark from '../modals/EditBookmark';
 export default class Board extends Component {
     constructor(props) {
         super(props);
+        this.defaultProps = {
+            callbackDeleteBookmark: ''
+        }
         this.state = {
             title: "",
             description: "",
@@ -97,6 +100,19 @@ export default class Board extends Component {
 
                 })
             })
+    }
+
+    deleteBookmark = (bookmarkId) => {
+        //console.log(boardId);
+        api.deleteBookmark(bookmarkId)
+            .then(res => {
+                let updatedBookmarks = this.state.bookmarks.filter(bookmark => {
+                    return bookmark.id !== bookmarkId;
+                });
+                this.setState({
+                    bookmarks: updatedBookmarks
+                })
+            })
 
     }
 
@@ -124,6 +140,7 @@ export default class Board extends Component {
                 description={b.description}
                 url={b.url}
                 callbackEditBookmark={this.summonEditBookmark}
+                callbackDeleteBookmark={this.deleteBookmark}
 
               />
             )}
