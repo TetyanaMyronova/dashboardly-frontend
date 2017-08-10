@@ -36,44 +36,50 @@ class Api {
             .get(`${API_HOST}/boards/${boardId}/bookmarks`)
     )
 
-    getUser = () => (
+    getUser = (token) => (
         superagent
             .get(`${API_HOST}/auth/me`)
+            .set('Authorization', `token ${token}`)
     )
 
-    createBoard = (title, description) => (
+    createBoard = (token, title, description) => (
         superagent
             .post(`${API_HOST}/boards`)
+            .set('Authorization', `token ${token}`)
             .send({title, description})
     )
 
-    createBookmark = (boardId, title, url, description) => (
+    createBookmark = (token, boardId, title, url, description) => (
         superagent
             .post(`${API_HOST}/boards/${boardId}/bookmarks`)
+            .set('Authorization', `token ${token}`)
             .send({boardId, title, url, description})
     )
 
-    updateBoard = (id, title, description) => (
+    updateBoard = (token, id, title, description) => (
         superagent
             .patch(`${API_HOST}/boards/${id}`)
+            .set('Authorization', `token ${token}`)
             .send({id, title, description})
     )
 
-    updateBookmark = (id, title, description, url) => (
+    updateBookmark = (token, id, title, description, url) => (
         superagent
             .patch(`${API_HOST}/bookmarks/${id}`)
             .send({id, title, description, url})
     )
 
-    deleteBoard = (id) => (
+    deleteBoard = (token, id) => (
         superagent
             .delete(`${API_HOST}/boards/${id}`)
+            .set('Authorization', `token ${token}`)
             .send({id})
     )
 
-    deleteBookmark = (id) => (
+    deleteBookmark = (token, id) => (
         superagent
             .delete(`${API_HOST}/bookmarks/${id}`)
+            .set('Authorization', `token ${token}`)
             .send({id})
     )
 

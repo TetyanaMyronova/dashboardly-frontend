@@ -33,8 +33,9 @@ class Menu extends Component {
     fetchUser() {
         auth.getUser()
             .then(res => {
+                console.log(`Menu user = ${res}`);
                 this.updateUser(res);
-            })
+            });
     }
 
     updateUser(user) {

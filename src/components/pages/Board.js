@@ -28,7 +28,15 @@ export default class Board extends Component {
         };
     }
   
-  closeEditBookmark = () =>  this.setState({isEditBookmarkOpen: false})
+  closeEditBookmark = () =>  this.setState({
+        editBookmarkInfo: {
+            id: 0,
+            title: "",
+            description: "",
+            url: ""
+        },
+        sEditBookmarkOpen: false
+  })
   
   componentDidMount() {
     this.fetchBoardData();

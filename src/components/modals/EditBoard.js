@@ -26,6 +26,11 @@ class EditBoard extends Component {
     }
 
     handleClickOutside = () => {
+        this.setState({
+            id: 0,
+            title: '',
+            description: ''
+        });
         this.props.closeEditBoard();
     }
  

@@ -14,7 +14,7 @@ export default class Home extends Component {
         this.defaultProps = {
             callbackEditBoard: '',
             callbackDeleteBoard: ''
-        }
+        };
         this.state = {
             boards: [],
             editBoardInfo: {
@@ -26,7 +26,17 @@ export default class Home extends Component {
         };
     }
 
-    closeEditBoard = () =>  this.setState({isEditBoardOpen: false})
+    closeEditBoard = () =>  {
+        // console.log("Closing Board");
+        this.setState({
+            isEditBoardOpen: false,
+            editBoardInfo: {
+                id: 0,
+                title: '',
+                description: ''
+            }
+        });
+    }
 
     componentDidMount() {
         this._fetchBoards();
@@ -39,7 +49,7 @@ export default class Home extends Component {
     _fetchBoards = () => {
         api.getBoardsList()
             .then(res => {
-                console.log(`boards=${JSON.stringify(res.body.boards)}`);
+                //console.log(`boards=${JSON.stringify(res.body.boards)}`);
                 this.setState({boards: res.body.boards});
             })
             .catch(console.error);
@@ -60,7 +70,7 @@ export default class Home extends Component {
 
     summonEditBoard = (boardInfo) => {
         //This is the function for the [Edit] button on the board
-        //console.log(`Home's board info=${JSON.stringify(boardInfo)}`);
+        // console.log(`Summoning edit board=${JSON.stringify(boardInfo)}`);
 
         //summon board information with the caller board's information
         if (boardInfo) {
@@ -78,6 +88,7 @@ export default class Home extends Component {
     }
 
     editBoard = (boardInfo) => {
+        // console.log(`Calling API on ${JSON.stringify(boardInfo)}`);
         api.updateBoard(boardInfo.id, boardInfo.title, boardInfo.description)
             .then(result => {
                 // console.log(`Checking return of res ${JSON.stringify(result.body)}`);

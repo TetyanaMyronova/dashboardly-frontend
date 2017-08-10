@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import onClickOutside from 'react-onclickoutside';
 
 import './CreateBoard.css';
-import  api from '../../api.js'
+// import  api from '../../api.js';
+import  auth from '../../auth.js';
 var limitOfDescriptionValue = 80;
 
 class CreateBoard extends Component {
@@ -33,7 +34,7 @@ class CreateBoard extends Component {
     _handleCreateBoard = (e) => {
         e.preventDefault();
         if (this.refs.title.value.length > 0 && this.refs.description.value.length > 0 && this.refs.description.value.length <= limitOfDescriptionValue) {
-            api.createBoard(this.refs.title.value, this.refs.description.value)
+            auth.createBoard(this.refs.title.value, this.refs.description.value)
                 .then(res => {
                     this.props.callbackFromParent(res.body)
                     if (this.state.error !== '') {
