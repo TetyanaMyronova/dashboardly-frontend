@@ -17,6 +17,12 @@ export default class BookmarkCard extends Component {
         this.props.callbackEditBookmark(this.props);
     }
 
+    deleteBookmark = (e) => {
+        e.preventDefault();
+        // console.log(`Editing boardId=${this.props.id}`);
+        this.props.callbackDeleteBookmark(this.props.id);
+    }
+
     render() {
         let {title, description, url} = this.props;
         //console.log('This is Bookmark Card' + JSON.stringify(this.props));
@@ -31,6 +37,7 @@ export default class BookmarkCard extends Component {
                 </a>
                 <div className="edit">
                     {auth.isLoggedIn() ? (+this.props.ownerId === +localStorage.id? <button type="click" onClick={this.editBookmark}>Edit</button> : null) : null}
+                    {auth.isLoggedIn() ? (+this.props.ownerId === +localStorage.id? <button type="click" onClick={this.deleteBookmark}>Delete</button> : null) : null}
                 </div>
             </div>
 

@@ -8,6 +8,7 @@ export default class BoardCard extends Component {
         super(props);
         this.defaultProps = {
             ownerId: 0,
+            callbackDeleteBookmark:''
         }
         this.state = {};
     }
@@ -24,6 +25,8 @@ export default class BoardCard extends Component {
         console.log(`This is basic on DeleteBoard ${JSON.stringify(this.props)}`);
         this.props.callbackDeleteBoard(this.props.id);
     }
+
+
 
     render() {
         let {title, description, id} = this.props;
