@@ -76,7 +76,7 @@ export default class Board extends Component {
     }
 
     editBookmark = (bookmarkInfo) => {
-        console.log(`Board bookmark Info callback ${JSON.stringify(bookmarkInfo)}`);
+        //console.log(`Board bookmark Info callback ${JSON.stringify(bookmarkInfo)}`);
         api.updateBookmark(bookmarkInfo.id, bookmarkInfo.title, bookmarkInfo.description, bookmarkInfo.url)
             .then(result => {
                 console.log(result);
@@ -122,6 +122,7 @@ export default class Board extends Component {
                 description={b.description}
                 url={b.url}
                 callbackEditBookmark={this.summonEditBookmark}
+
               />
             )}
               {auth.isLoggedIn() ? <AddButton typeOfElement="Bookmark" callbackFromParent={this.newBookmark}/> : null}

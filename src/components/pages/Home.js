@@ -5,12 +5,16 @@ import AddButton from '../elements/AddButton';
 import EditBoard from '../modals/EditBoard';
 import auth from '../../auth';
 import './Home.css';
-import {browserHistory as history} from 'react-router';
+// import {browserHistory as history} from 'react-router';
 
 
 export default class Home extends Component {
     constructor(props) {
         super(props);
+        this.defaultProps = {
+            callbackEditBoard: '',
+            callbackDeleteBoard: ''
+        }
         this.state = {
             boards: [],
             editBoardInfo: {
@@ -27,6 +31,10 @@ export default class Home extends Component {
     componentDidMount() {
         this._fetchBoards();
     }
+
+    // componentDidUpdate() {
+    //     console.log('home updated');
+    // }
 
     _fetchBoards = () => {
         api.getBoardsList()
@@ -46,9 +54,9 @@ export default class Home extends Component {
         //this.goToNewBoard(newBoardInfo.id); need to be revised later # complete task 4
     }
 
-    goToNewBoard = (boardId) => {
-        history.push(`/boards/${boardId}`);
-    }
+    // goToNewBoard = (boardId) => {
+    //     history.push(`/boards/${boardId}`);
+    // }
 
     summonEditBoard = (boardInfo) => {
         //This is the function for the [Edit] button on the board
@@ -89,11 +97,18 @@ export default class Home extends Component {
             });
     }
 
-    deleteBoard=(boardInfo)=>{
-        api.deleteBoard(boardInfo.id)
-            .then(result => {
-
+    deleteBoard = (boardId) => {
+        //console.log(boardId);
+        api.deleteBoard(boardId)
+            .then(res => {
+                let updatedBoards = this.state.boards.filter(board => {
+                   return board.id !== boardId;
+                });
+                this.setState({
+                    boards: updatedBoards
+                })
             })
+
     }
 
     renderEditBoard = (boardInfo) => {
@@ -103,10 +118,6 @@ export default class Home extends Component {
         });
     }
 
-
-    // componentDidUpdate(){
-    //     console.log(`Home's current state=${JSON.stringify(this.state.editBoardInfo)}`);
-    // }
 
     render() {
         let {boards} = this.state;
@@ -123,6 +134,7 @@ export default class Home extends Component {
                             description={b.description}
                             updatedAt={b.updatedAt}
                             callbackEditBoard={this.summonEditBoard}
+                            callbackDeleteBoard={this.deleteBoard}
                         />
                     )}
                 </div>

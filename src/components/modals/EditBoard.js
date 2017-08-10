@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
-import onClickOutside from 'react-onclickoutside';
-
 import './EditBoard.css';
-import  api from '../../api.js'
 var limitOfDescriptionValue = 80;
 
-class EditBoard extends Component {
+export default class EditBoard extends Component {
     constructor(props) {
         super(props);
         this.defaultProps = {
@@ -26,10 +23,6 @@ class EditBoard extends Component {
         };
     }
 
-    handleClickOutside = () => {
-        this.props.closeEditBoard();
-    }
-
     _handleEditBoard = (e) => {
         e.preventDefault();
         this.props.callbackEditBoard({
@@ -37,20 +30,6 @@ class EditBoard extends Component {
             title: this.state.titleValue,
             description: this.state.descriptionValue
         });
-
-    }
-
-    _handleDeleteBoard = (e) => {
-        e.preventDefault();
-        // this.props.callbackEditBoard({
-        //     id: this.state.id,
-        //     title: this.state.titleValue,
-        //     description: this.state.descriptionValue
-        // });
-        api.deleteBoard(this.state.id)
-            .then(result => {
-                console.log('The board was deleted' +JSON.stringify(result.body) );
-            })
 
     }
 
@@ -87,23 +66,25 @@ class EditBoard extends Component {
         return (
             <div className={`editBoard ${show ? "show" : ""}`}>
                 <h1>Edit Board</h1>
-                <form className="editBoardForm" onSubmit={this._handleEditBoard}>
+                <form onSubmit={this._handleEditBoard}>
                     <p>Title: </p>
                     <input ref="title" onInput={this.handleTitleInput} value={this.state.titleValue}/>
                     <hr/>
                     <h2 className="error">{this.state.error}</h2>
                     <p>Description: </p>
-                    <textarea ref="description" onInput={this.handleDescriptionInput} value={this.state.descriptionValue}/>
-                    <p style={{color: 'darkblue', textAlign: 'right'}}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
-                    <div className="editBoardButton">
-                        <button type="submit">Edit</button>
-                        <button onClick={this._handleDeleteBoard} type="click">Delete Board</button>
-                    </div>
+                    <textarea ref="description" onInput={this.handleDescriptionInput}
+                              value={this.state.descriptionValue}/>
+                    <p style={{
+                        color: 'darkblue',
+                        textAlign: 'right'
+                    }}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
+                    <hr/>
+                    <button type="submit">Edit Board</button>
+                    <hr/>
                 </form>
             </div>
-        );
+
+        )
     }
 
 }
-
-export default onClickOutside(EditBoard);
