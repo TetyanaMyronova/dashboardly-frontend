@@ -94,7 +94,7 @@ class EditBoard extends Component {
                             }}> {limitOfDescriptionValue - this.state.descriptionValue.length}/{this.state.descriptionValue.length}</p>
                         </div>
                         <div className="editBoardButton">
-                            <button type="submit">Edit Board</button>
+                            <button type="submit">Edit</button>
                         </div>
                     </form>
                 </div>

@@ -35,7 +35,7 @@ export default class Board extends Component {
             description: "",
             url: ""
         },
-        sEditBookmarkOpen: false
+        isEditBookmarkOpen: false
   })
   
   componentDidMount() {
