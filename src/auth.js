@@ -65,8 +65,11 @@ module.exports = {
         return api.createBoard(localStorage.token, title, description)
         .then(res => {
             console.log(`Success, boardID=`,res.body);
-            return res.body //Fix to send boardId
+            return res.body; //Fix to send boardId
         })
+        .catch(err => {
+            throw new Error(err);
+        });
     }
     // getUserId() {
     //     return localStorage.id;

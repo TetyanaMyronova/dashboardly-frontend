@@ -27,7 +27,7 @@ class CreateBoard extends Component {
         if ((event.target.value !== this.state.descriptionValue) && (event.target.value.length <= limitOfDescriptionValue)) {
             this.setState({
                 descriptionValue: event.target.value
-            })
+            });
         }
     }
 
@@ -35,15 +35,16 @@ class CreateBoard extends Component {
         e.preventDefault();
         if (this.refs.title.value.length > 0 && this.refs.description.value.length > 0 && this.refs.description.value.length <= limitOfDescriptionValue) {
             auth.createBoard(this.refs.title.value, this.refs.description.value)
-                .then(res => {
-                    this.props.callbackFromParent(res.body)
-                    if (this.state.error !== '') {
-                        this.setState({error: ''})
-                    }
-                })
-                .catch(err => this.setState(console.error))
+            .then(res => {
+                console.log(`From Createboard with res=${JSON.stringify(res)}`);
+                this.props.callbackFromParent(res);
+                if (this.state.error !== '') {
+                    this.setState({error: ''});
+                }
+            })
+            .catch(err => this.setState(console.error));
         } else {
-            this.setState({error: "Please enter a title and description"})
+            this.setState({error: "Please enter a title and description"});
         }
     }
 

@@ -56,6 +56,7 @@ export default class Home extends Component {
     }
 
     newBoard = (newBoardInfo) => {
+        console.log(`From home, new board=${JSON.stringify(newBoardInfo)}`);
         let newBoardList = this.state.boards;
         newBoardList.push(newBoardInfo);
         this.setState({

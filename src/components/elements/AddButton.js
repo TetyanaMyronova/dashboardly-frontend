@@ -26,7 +26,7 @@ export default class AddButton extends React.Component {
     closeCreateElement=()=> this.setState({isCreateElementOpen: false})
 
     newBoard = (newBoardInfo) => {
-        //console.log(newBoardInfo);
+        console.log(`New board created [AddButton] with info= ${JSON.stringify(newBoardInfo)}`);
         this.props.callbackFromParent(newBoardInfo);
         this.setState({
             isCreateElementOpen: false
