@@ -21,7 +21,7 @@ class App extends Component {
         if (this.state.path !== browserHistory.getCurrentLocation().pathname) {
             let newPath = browserHistory.getCurrentLocation().pathname;
             let boardId = parseInt(newPath.replace('/boards/', ''));
-            if (newPath !== '/') {
+            if (newPath.startsWith('/boards/')) {
                 api.getBoard(boardId)
                     .then(res => {
                         this.setState({
