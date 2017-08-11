@@ -4,6 +4,8 @@ import BookmarkCard from '../elements/BookmarkCard';
 import auth from '../../auth';
 import AddButton from '../elements/AddButton';
 import './Board.css';
+import Setting from '../modals/Setting';
+import EditBoard from '../modals/EditBoard';
 import EditBookmark from '../modals/EditBookmark';
 
 export default class Board extends Component {
@@ -24,9 +26,16 @@ export default class Board extends Component {
                 description: "",
                 url: ""
             },
+            isSettingOpen: false,
+            isEditBoardOpen: false,
             isEditBookmarkOpen: false
         };
     }
+
+  
+  closeSetting = () => this.setState({isSettingOpen: false})
+  
+  closeEditBoard = () => this.setState({isEditBoardOpen: false})
   
   closeEditBookmark = () =>  this.setState({
         editBookmarkInfo: {
@@ -59,14 +68,22 @@ export default class Board extends Component {
             })
             .catch(console.error);
     }
+    
+    renderEditBoard = () => {
+        
+    }
+    
+    editBoard = (boardInfo) => {
+        
+    }
 
-  newBookmark = (newBookmarkInfo) => {
+    newBookmark = (newBookmarkInfo) => {
       let newBookmarkList = this.state.bookmarks;
       newBookmarkList.push(newBookmarkInfo);
       this.setState({
           bookmarks: newBookmarkList
       });
-  }
+    }
 
     summonEditBookmark = (bookmarkInfo) => {
         //This is the function for the [Edit] button on the board
@@ -82,7 +99,7 @@ export default class Board extends Component {
                 this.setState({
                     editBookmarkInfo: bookmarkInfo
                 });
-                this.renderEditBookmark(bookmarkInfo);
+                this.renderEditBookmark();
             }
         }
         //console.log(`Home is rendering board ${JSON.stringify(boardInfo)}`);
@@ -124,7 +141,7 @@ export default class Board extends Component {
 
     }
 
-    renderEditBookmark = (bookmarkInfo) => {
+    renderEditBookmark = () => {
         //Render only if we have board information, summoned from an edit button
         this.setState({
             isEditBookmarkOpen: true
@@ -133,10 +150,21 @@ export default class Board extends Component {
 
 
   render() {
-    let { bookmarks } = this.state;
+    let { bookmarks, isSettingOpen } = this.state;
       //console.log(`Rendering=${JSON.stringify(this.state.bookmarks)}`);
     return (
       <div className="board">
+        <i className="fa fa-cog fa-2x settings-icon"
+            onClick={() => this.setState({isSettingOpen: !isSettingOpen})}
+        />
+        <Setting 
+            boardId={this.props.params.id} 
+            show={isSettingOpen} 
+            closeSetting={this.closeSetting} 
+            callbackEditBoard={this.renderEditBoard} 
+            callbackDeleteBoard={this.deleteBoard}
+        />
+        
         <div className="bookmarkCards">
             { bookmarks.map(b =>
               <BookmarkCard
@@ -154,7 +182,19 @@ export default class Board extends Component {
               {auth.isLoggedIn() ? <AddButton boardId={this.props.params.id} typeOfElement="Bookmark" callbackFromParent={this.newBookmark}/> : null}
         </div>
         <div className={`editContainer ${this.state.isEditBookmarkOpen ? "show" : ""}`}>
-            <EditBookmark show={this.state.isEditBookmarkOpen} bookmarkInfo={this.state.editBookmarkInfo} closeEditBookmark={this.closeEditBookmark} callbackEditBookmark={this.editBookmark}/>
+            <EditBookmark
+                show={this.state.isEditBookmarkOpen}
+                bookmarkInfo={this.state.editBookmarkInfo}
+                closeEditBookmark={this.closeEditBookmark}
+                callbackEditBookmark={this.editBookmark}/>
+        </div>
+        <div className={`editContainer ${this.state.isEditBoardOpen ? "show" : ""}`}>
+            <EditBoard
+                show={this.state.isEditBoardOpen}
+                boardInfo={{title: this.state.title, description: this.state.description}}
+                closeEditBoard={this.closeEditBoard}
+                callbackEditBoard={this.editBoard}
+            />
         </div>
       </div>
     );
