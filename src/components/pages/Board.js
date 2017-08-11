@@ -154,9 +154,9 @@ export default class Board extends Component {
       //console.log(`Rendering=${JSON.stringify(this.state.bookmarks)}`);
     return (
       <div className="board">
-        <i className="fa fa-cog fa-2x settings-icon"
+        {auth.isLoggedIn() ? (+auth.getUserId()=== +this.state.ownerId ? <i className="fa fa-cog fa-2x settings-icon"
             onClick={() => this.setState({isSettingOpen: !isSettingOpen})}
-        />
+        /> : null) :null}
         <Setting 
             boardId={this.props.params.id} 
             show={isSettingOpen} 
@@ -179,7 +179,7 @@ export default class Board extends Component {
 
               />
             )}
-              {auth.isLoggedIn() ? (+localStorage.id=== +this.state.ownerId ? <AddButton boardId={this.props.params.id} typeOfElement="Bookmark" callbackFromParent={this.newBookmark}/> : null) : null}
+              {auth.isLoggedIn() ? (+auth.getUserId()=== +this.state.ownerId ? <AddButton boardId={this.props.params.id} typeOfElement="Bookmark" callbackFromParent={this.newBookmark}/> : null) : null}
         </div>
         <div className={`editContainer ${this.state.isEditBookmarkOpen ? "show" : ""}`}>
             <EditBookmark
