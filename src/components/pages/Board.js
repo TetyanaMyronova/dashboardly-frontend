@@ -179,7 +179,7 @@ export default class Board extends Component {
 
               />
             )}
-              {auth.isLoggedIn() ? <AddButton boardId={this.props.params.id} typeOfElement="Bookmark" callbackFromParent={this.newBookmark}/> : null}
+              {auth.isLoggedIn() ? (+localStorage.id=== +this.state.ownerId ? <AddButton boardId={this.props.params.id} typeOfElement="Bookmark" callbackFromParent={this.newBookmark}/> : null) : null}
         </div>
         <div className={`editContainer ${this.state.isEditBookmarkOpen ? "show" : ""}`}>
             <EditBookmark
