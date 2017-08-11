@@ -41,14 +41,19 @@ class CreateBookmark extends Component {
 
     _handleCreateBookmark = (e) => {
         e.preventDefault();
-        //console.log("BoardId=",this.props.boardId);
+        console.log("BoardId=",this.props.boardId);
         if (this.refs.title.value.length > 0 && this.refs.url.value.length > 0) {
-            auth.createBookmark(this.props.boardId, this.refs.title.value, this.refs.url.value, this.refs.description.value)
+            auth.createBookmark(this.props.boardId, this.refs.title.value, this.refs.url.value, this.state.descriptionValue)
                 .then(res => {
                     this.props.callbackFromParent(res);
                     if (this.state.error !== '') {
                         this.setState({error: ''});
-                    }
+                    };
+                    this.setState({
+                        descriptionValue: ''
+                    })
+                    this.refs.title.value = '';
+                    this.refs.url.value = '';
                 })
                 .catch(err => this.setState(console.error));
         } else {

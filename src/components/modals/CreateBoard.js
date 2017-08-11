@@ -34,13 +34,18 @@ class CreateBoard extends Component {
     _handleCreateBoard = (e) => {
         e.preventDefault();
         if (this.refs.title.value.length > 0 && this.refs.description.value.length <= limitOfDescriptionValue) {
-            auth.createBoard(this.refs.title.value, this.refs.description.value)
+            auth.createBoard(this.refs.title.value, this.state.descriptionValue)
             .then(res => {
-                //console.log(`From Createboard with res=${JSON.stringify(res)}`);
-                this.props.callbackFromParent(res);
                 if (this.state.error !== '') {
                     this.setState({error: ''});
-                }
+                };
+                this.setState({
+                    descriptionValue: ''
+                })
+                this.refs.title.value = '';
+                //console.log(`From Createboard with res=${JSON.stringify(res)}`);
+                this.props.callbackFromParent(res);
+
             })
             .catch(err => this.setState(console.error));
         } else {
