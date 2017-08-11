@@ -8,7 +8,10 @@ module.exports = {
             throw new Error('Already logged in'); //revise it later
         }
         else {
-            return api.requestSignup(email, pass);
+            return api.requestSignup(email, pass)
+            .catch(err => {
+                throw new Error(`Error from server: ${err.message}`);
+            });
         }
     },
 
@@ -127,12 +130,12 @@ module.exports = {
         .catch(err => {
             throw new Error(`Error from server: ${err.message}`);
         });
-    }
+    },
     
-    // getUserId() {
-    //     return localStorage.id;
-    //
-    // }
+    getUserId() {
+        return localStorage.id;
+    
+    }
     // getAvatar() {
     //     return localStorage.avatarurl;
     // }

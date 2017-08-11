@@ -24,7 +24,7 @@ export default class SignUp extends Component {
         if (email && password) {
             auth.signup(email, password)
                 .then(res => this.props.router.push('/login'))
-                .catch(err => this.setState(console.error))
+                .catch(err => this.setState({error: err.message}))
         }
         else {
             this.setState({error: "Please enter an email and password"})
