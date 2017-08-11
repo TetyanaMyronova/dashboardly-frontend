@@ -1,0 +1,40 @@
+.setting {
+  width: 120px;
+  position: fixed;
+  top: 50px;
+  right: 0;
+  z-index: 10;
+  background: white;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  transform: translateX(270px);
+  opacity: 0;
+  visibility: hidden;
+  color: DarkSeaGreen;
+  display: flex;
+  flex-direction: column;
+}
+
+.setting.show {
+  transform: translateX(0px);
+  opacity: 1;
+  visibility: visible;
+}
+
+.setting button {
+    border: none;
+    background-color: transparent;
+    color: dimgrey;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.setting button:hover {
+    color: deepskyblue;
+}
+
+.setting button:disabled {
+    color: lightgrey;
+}

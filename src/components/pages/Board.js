@@ -107,7 +107,7 @@ export default class Board extends Component {
 
     editBookmark = (bookmarkInfo) => {
         //console.log(`Board bookmark Info callback ${JSON.stringify(bookmarkInfo)}`);
-        auth.updateBookmark(bookmarkInfo.id, bookmarkInfo.title, bookmarkInfo.description, bookmarkInfo.url)
+        auth.updateBookmark(bookmarkInfo.id, bookmarkInfo.title, bookmarkInfo.url, bookmarkInfo.description)
             .then(result => {
                 //console.log(result);
                 let updatedBookmarks = this.state.bookmarks.map(bookmark => {

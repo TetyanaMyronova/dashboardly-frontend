@@ -66,7 +66,8 @@ class Api {
     updateBookmark = (token, id, title, url, description) => (
         superagent
             .patch(`${API_HOST}/bookmarks/${id}`)
-            .send({id, title, description, url})
+            .set('Authorization', `token ${token}`)
+            .send({id, title, url, description})
     )
 
     deleteBoard = (token, id) => (
