@@ -14,7 +14,7 @@ class Menu extends Component {
             id: 0,
             email: '',
             avatarUrl: ''
-        };
+        }
         this._handleLogout = this._handleLogout.bind(this);
     }
 
@@ -44,12 +44,12 @@ class Menu extends Component {
                 id: user.id,
                 email: user.email,
                 avatarUrl: user.avatarurl
-            });
+            })
         }
     }
 
     componentDidUpdate() {
-        const isLoggedIn = auth.isLoggedIn();
+        const isLoggedIn = auth.isLoggedIn()
         if (isLoggedIn && this.state.id === 0) {
             this.fetchUser();
         } else if (!isLoggedIn) {
@@ -57,13 +57,13 @@ class Menu extends Component {
                 id: 0,
                 email: '',
                 avatarUrl: ''
-            });
+            })
         }
     }
 
     render() {
-        let {closeMenu, show} = this.props;
-        const isLoggedIn = auth.isLoggedIn();
+        let {closeMenu, show} = this.props
+        const isLoggedIn = auth.isLoggedIn()
         //console.log(this.state.email);
         return (
             <div className={`menu ${show ? "show" : ""}`}>
