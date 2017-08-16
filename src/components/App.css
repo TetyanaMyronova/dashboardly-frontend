@@ -10,12 +10,17 @@ a {
   color: inherit;
 }
 
+h1, h2, p {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   display: flex;
   flex-flow: column;
   align-items: center;
   background: papayawhip;
-  height: 100vh
+  min-height: 100vh
 }
 
 .App-navbar {

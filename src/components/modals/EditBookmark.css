@@ -1,4 +1,4 @@
-.createBookmark{
+.editBookmark{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -10,18 +10,18 @@
     width: 50vw;
 }
 
-.createBookmark.show {
+.editBookmark.show {
     opacity: 1;
     visibility: visible;
     z-index: 9999;
     background-color: white;
 }
 
-.createBookmark h1, .createBookmark h2 {
+.editBookmark h1, .editBookmark h2 {
     padding-left: 10px;
 }
 
-.createBookmarkForm {
+.editBookmarkForm {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -31,7 +31,7 @@
     width: 50vw;
 }
 
-.createBookmarkForm input {
+.editBookmarkForm input {
     border: none;
     border-bottom: 1px solid lightgrey;
     font-size: 1.5rem;
@@ -40,7 +40,7 @@
     width: 40vw;
 }
 
-.createBookmarkForm textarea {
+.editBookmarkForm textarea {
     border: none;
     border-bottom: 1px solid lightgrey;
     resize: none;
@@ -51,21 +51,21 @@
     width: 40vw;
 }
 
-.createBookmarkForm div {
+.editBookmarkForm div {
     width: 40vw;
 }
 
-.createBookmarkForm.descriptionCounter {
+.editBookmarkForm.descriptionCounter {
     display: flex;
     justify-content: flex-end;
 }
 
-.createBookmarkButton {
+.editBookmarkButton {
     display: flex;
     justify-content: flex-end;
 }
 
-.createBookmarkButton button {
+.editBookmarkButton button {
     border: none;
     background-color: transparent;
     color: dimgrey;
@@ -73,6 +73,6 @@
     font-weight: bold;
 }
 
-.createBookmarkButton button:hover {
+.editBookmarkButton button:hover {
     color: deepskyblue;
 }

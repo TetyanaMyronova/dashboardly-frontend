@@ -1,0 +1,22 @@
+.editContainer.show {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 9990;
+}
+
+.settings-icon {
+  color: DarkSeaGreen;
+  transition: 0.5s;
+  cursor: pointer;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.settings-icon:hover {
+  color: DarkOliveGreen;
+}
